@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="style.css" />
+  <title>Doctor Registration</title>
+</head>
+<body>
+  <div class="wrapper">
+    <nav class="nav">
+      <div class="nav-logo">
+        <p>LOGO .</p>
+      </div>
+      <div class="nav-menu" id="navMenu">
+        <ul>
+          <li><a href="home.html" class="link active">Home</a></li>
+          <li><a href="#" class="link">Blog</a></li>
+          <li><a href="#" class="link">Services</a></li>
+          <li><a href="#" class="link">About</a></li>
+        </ul>
+      </div>
+      <div class="nav-button">
+        <button class="btn white-btn" id="loginBtn" onclick="window.location.href='index.html?action=login'">Sign In</button>
+        <button class="btn" id="registerBtn" onclick="window.location.href='index.html?action=register'">Sign Up</button>
+      </div>
+      <div class="nav-menu-btn">
+        <i class="bx bx-menu" onclick="myMenuFunction()"></i>
+      </div>
+    </nav>
+
+    <!-- Doctor Registration Form Starts Here -->
+    <div class="form-box-doctor">
+      <form action="doctor_register.php" method="POST" class="doctor-register-container">
+        <div class="top">
+                <span>Have an account? <a href="doclog.html">Login</a></span>
+                <header>Doctor Registration</header>
+            </div>
+        <div class="two-forms">
+          <div class="input-box">
+            <i class='bx bx-user'></i>
+            <input type="text" name="first" class="input-field" placeholder="First Name" required>
+          </div>
+          <div class="input-box">
+            <i class='bx bx-user'></i>
+            <input type="text" name="last" class="input-field" placeholder="Last Name" required>
+          </div>
+        </div>
+        <div class="input-box">
+          <i class='bx bx-envelope'></i>
+          <input type="email" name="email" class="input-field" placeholder="Email" required>
+        </div>
+        <div class="input-box">
+          <i class='bx bx-lock-alt'></i>
+          <input type="password" name="password" class="input-field" placeholder="Password" required>
+        </div>
+        <div class="input-box">
+          <i class='bx bx-phone'></i>
+          <input type="text" name="phone" class="input-field" placeholder="Phone Number" required>
+        </div>
+        <div class="input-box">
+          <i class='bx bx-briefcase'></i>
+          <input type="text" name="specialization" class="input-field" placeholder="Specialization" required>
+        </div>
+        <div class="input-box">
+          <i class='bx bx-map'></i>
+          <input type="text" name="address" class="input-field" placeholder="Chamber Address" required>
+        </div>
+        <div class="input-box">
+          <i class='bx bx-id-card'></i>
+          <input type="text" name="license" class="input-field" placeholder="License Number" required>
+        </div>
+        <div class="input-box">
+          <input type="submit" class="submit" value="Register">
+        </div>
+      </form>
+    </div>
+
+    <script src="script.js"></script>
+  </div>
+</body>
+</html>
