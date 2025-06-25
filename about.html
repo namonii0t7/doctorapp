@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | MediConnect</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .about-container {
+      max-width: 1000px;
+      margin: 140px auto 40px auto;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 40px;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      box-shadow: 0 0 20px rgba(0,0,0,0.25);
+    }
+
+    .about-container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 32px;
+    }
+
+    .about-section {
+      margin-bottom: 40px;
+    }
+
+    .about-section h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: #ffd369;
+    }
+
+    .about-section p {
+      margin: 5px 0;
+      font-size: 16px;
+    }
+
+    .team-members {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-around;
+    }
+
+    .member-box {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 20px;
+      border-radius: 15px;
+      flex: 1 1 250px;
+      min-width: 220px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .member-box p {
+      font-size: 15px;
+      margin: 8px 0;
+    }
+
+    @media (max-width: 768px) {
+      .team-members {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <!-- Navbar -->
+    <nav class="nav">
+      <div class="nav-logo">
+        <p>MediConnect .</p>
+      </div>
+      <div class="nav-menu" id="navMenu">
+        <ul>
+          <li><a href="index.html" class="link">Home</a></li>
+          <li><a href="#" class="link">Blog</a></li>
+          <li><a href="#" class="link">Services</a></li>
+          <li><a href="about.html" class="link active">About</a></li>
+        </ul>
+      </div>
+      <div class="nav-button">
+        <button class="btn white-btn" onclick="window.location.href='index.html'">Back</button>
+      </div>
+    </nav>
+
+    <!-- About Us Content -->
+    <div class="about-container">
+      <h2>About Us</h2>
+
+      <div class="about-section">
+        <h3>Supervisor</h3>
+        <p><strong>Name:</strong> Sabia Akter Bhuiyan</p>
+        <p><strong>Position:</strong> Assistant Professor</p>
+         <p>Depertment of Computer Science & Engineering</p>
+        <p><strong>Email:</strong> aktersabia@yahoo.com</p>
+      </div>
+
+      <div class="about-section">
+        <h3>Team Members</h3>
+        <div class="team-members">
+          <div class="member-box">
+            <p><strong>Name:</strong> Nadia Akter</p>
+            <p><strong>ID:</strong> 2132020076</p>
+             <p><strong>Batch:</strong> 58(B+C)</p>
+              <p>Depertment of Computer Science & Engineering</p>
+            <p><strong>Email:</strong> cse_2132020076@lus.ac.bd</p>
+          </div>
+          <div class="member-box">
+            <p><strong>Name:</strong> Tithi Dey</p>
+            <p><strong>ID:</strong> 2132020085</p>
+             <p><strong>Batch:</strong> 58(B+C)</p>
+              <p>Depertment of Computer Science & Engineering</p>
+            <p><strong>Email:</strong> cse_2132020085@lus.ac.bd</p>
+          </div>
+          <div class="member-box">
+            <p><strong>Name:</strong> Mst. Mahbuba Begum</p>
+            <p><strong>ID:</strong> 2012020227</p>
+             <p><strong>Batch:</strong> 58(B+C)</p>
+              <p>Depertment of Computer Science & Engineering</p>
+            <p><strong>Email:</strong> shilaakther3949@gmail.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

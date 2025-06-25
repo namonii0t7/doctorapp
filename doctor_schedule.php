@@ -10,12 +10,12 @@ if ($conn->connect_error) {
 }
 
 // Auto-delete past schedules (based on current date and time)
-$today = date('l');
+$today = date('Y-m-d');
 $current_time = date('H:i:s');
-$conn->query("DELETE FROM schedules WHERE day = '$today' AND end_time < '$current_time'");
+$conn->query("DELETE FROM schedules WHERE date = '$today' AND end_time < '$current_time'");
 
 $doctor_id = $_SESSION['doctor_id'];
-$schedules = $conn->query("SELECT * FROM schedules WHERE doctor_id = $doctor_id ORDER BY FIELD(day, 'Saturday','Sunday','Monday','Tuesday','Wednesday','Thursday','Friday')");
+$schedules = $conn->query("SELECT * FROM schedules WHERE doctor_id = $doctor_id ORDER BY date");
 ?>
 
 <!DOCTYPE html>
@@ -27,41 +27,32 @@ $schedules = $conn->query("SELECT * FROM schedules WHERE doctor_id = $doctor_id 
 </head>
 <body>
   <nav class="nav">
-            <div class="nav-logo">
-                <p>LOGO .</p>
-            </div>
-            <div class="nav-menu" id="navMenu">
-                <ul>
-                    <li><a href="#" class="link active">Home</a></li>
-                    <li><a href="#" class="link">Blog</a></li>
-                    <li><a href="#" class="link">Services</a></li>
-                    <li><a href="#" class="link">About</a></li>
-                </ul>
-            </div>
+    <div class="nav-logo">
+        <p>MediConnect .</p>
+    </div>
+    <div class="nav-menu" id="navMenu">
+        <ul>
+            <li><a href="doctor_homepage.php" class="link active">Home</a></li>
+            <li><a href="#" class="link">Blog</a></li>
+            <li><a href="#" class="link">Services</a></li>
+            <li><a href="about.html" class="link">About</a></li>
+        </ul>
+    </div>
+    <div class="nav-button">
+        <button class="btn white-btn" id="loginBtn" onclick="window.location.href='doctor_profile.php?action=login'">Profile</button>
+        <button class="btn" id="registerBtn" onclick="window.location.href='doclog.html?action=register'">Log out</button>
+    </div>
+    <div class="nav-menu-btn">
+        <i class="bx bx-menu" onclick="myMenuFunction()"></i>
+    </div>
+  </nav>
 
-            <div class="nav-button">
-                <button class="btn white-btn" id="loginBtn" onclick="window.location.href='doctor_profile.php?action=login'">Profile</button>
-                <button class="btn" id="registerBtn" onclick="window.location.href='index.html?action=register'">Sign Up</button>
-            </div>
-            <div class="nav-menu-btn">
-                <i class="bx bx-menu" onclick="myMenuFunction()"></i>
-            </div>
-        </nav>
   <div class="wrapper">
     <div class="schedule-box">
       <h2>Set Your Schedule</h2>
       <form action="save_schedule.php" method="POST">
-        <label for="day">Day:</label>
-        <select name="day" required>
-          <option value="">Select Day</option>
-          <option value="Saturday">Saturday</option>
-          <option value="Sunday">Sunday</option>
-          <option value="Monday">Monday</option>
-          <option value="Tuesday">Tuesday</option>
-          <option value="Wednesday">Wednesday</option>
-          <option value="Thursday">Thursday</option>
-          <option value="Friday">Friday</option>
-        </select>
+        <label for="date">Date:</label>
+        <input type="date" name="date" required>
 
         <label for="start_time">Start Time:</label>
         <input type="time" name="start_time" required>
@@ -78,7 +69,7 @@ $schedules = $conn->query("SELECT * FROM schedules WHERE doctor_id = $doctor_id 
       <h2>Your Schedules</h2>
       <table>
         <tr>
-          <th>Day</th>
+          <th>Date</th>
           <th>Start Time</th>
           <th>End Time</th>
           <th>Max Patients</th>
@@ -86,7 +77,7 @@ $schedules = $conn->query("SELECT * FROM schedules WHERE doctor_id = $doctor_id 
         </tr>
         <?php while($row = $schedules->fetch_assoc()): ?>
           <tr>
-            <td><?= $row['day'] ?></td>
+            <td><?= htmlspecialchars($row['date']) ?></td>
             <td><?= date("g:i A", strtotime($row['start_time'])) ?></td>
             <td><?= date("g:i A", strtotime($row['end_time'])) ?></td>
             <td><?= $row['max_patients'] ?></td>

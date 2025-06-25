@@ -38,19 +38,19 @@ if (!$doctor) {
   <div class="wrapper">
     <nav class="nav">
       <div class="nav-logo">
-        <p>LOGO .</p>
+        <p>MediConnect .</p>
       </div>
       <div class="nav-menu" id="navMenu">
         <ul>
-          <li><a href="user_homepage.php" class="link active">Home</a></li>
+          <li><a href="user_homepage.html" class="link active">Home</a></li>
           <li><a href="#" class="link">Blog</a></li>
           <li><a href="#" class="link">Services</a></li>
-          <li><a href="#" class="link">About</a></li>
+          <li><a href="about.html" class="link">About</a></li>
         </ul>
       </div>
       <div class="nav-button">
-        <button class="btn white-btn" onclick="window.location.href='login.html'">Login</button>
-        <button class="btn" onclick="window.location.href='register.html'">Sign Up</button>
+        <button class="btn white-btn" onclick="window.location.href='user_profile.php'">Profile</button>
+        <button class="btn" onclick="window.location.href='logout.php'">Log out</button>
       </div>
       <div class="nav-menu-btn">
         <i class="bx bx-menu" onclick="myMenuFunction()"></i>

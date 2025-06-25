@@ -32,19 +32,19 @@ $doctor = $result->fetch_assoc();
 <div class="wrapper">
   <nav class="nav">
     <div class="nav-logo">
-      <p>LOGO .</p>
+      <p>MediConnect .</p>
     </div>
     <div class="nav-menu" id="navMenu">
       <ul>
-        <li><a href="#" class="link active">Home</a></li>
+        <li><a href="doctor_homepage.php" class="link active">Home</a></li>
         <li><a href="#" class="link">Blog</a></li>
         <li><a href="#" class="link">Services</a></li>
-        <li><a href="#" class="link">About</a></li>
+        <li><a href="about.html" class="link">About</a></li>
       </ul>
     </div>
     <div class="nav-button">
-      <button class="btn white-btn" onclick="window.location.href='doctor_profile.php'">Profile</button>
-      <button class="btn" onclick="window.location.href='logout.php'">Logout</button>
+      <button class="btn white-btn" onclick="window.location.href='doctor_profile.php?action=login'">Profile</button>
+      <button class="btn" onclick="window.location.href='logout.php?action=register'">Logout</button>
     </div>
     <div class="nav-menu-btn">
       <i class="bx bx-menu" onclick="myMenuFunction()"></i>
@@ -62,7 +62,7 @@ $doctor = $result->fetch_assoc();
     <a href="doctor_schedule.php" class="feature-box">
       <h3>🗓️<br>Set Schedule</h3>
     </a>
-    <a href="appointments.php" class="feature-box">
+    <a href="view_appointment.php" class="feature-box">
       <h3>📅<br>View Appointments</h3>
     </a>
     <a href="patient_records.php" class="feature-box">

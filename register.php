@@ -59,7 +59,7 @@ if ($stmt->execute()) {
         $mail->Body    = "Hi $firstname,<br><br>Please click the link below to verify your email:<br><a href='$link'>$link</a>";
 
         $mail->send();
-        echo "<script>alert('Registration successful! Check your email for verification.'); window.location.href = 'index.html';</script>";
+        echo "<script>alert('Registration successful! Check your email for verification.'); window.location.href = 'logreg.html';</script>";
     } catch (Exception $e) {
         echo "Email sending failed. Error: {$mail->ErrorInfo}";
     }

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Homepage</title>
+  <link rel="stylesheet" href="profile.css" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+<div class="wrapper">
+  <nav class="nav">
+    <div class="nav-logo">
+      <p>MediConnect .</p>
+    </div>
+    <div class="nav-menu" id="navMenu">
+      <ul>
+        <li><a href="user_homepage.html" class="link active">Home</a></li>
+        <li><a href="#" class="link">Blog</a></li>
+        <li><a href="#" class="link">Services</a></li>
+        <li><a href="about.html" class="link">About</a></li>
+      </ul>
+    </div>
+    <div class="nav-button">
+      <button class="btn white-btn" onclick="window.location.href='user_profile.php'">Profile</button>
+      <button class="btn" onclick="window.location.href='logout.php'">Logout</button>
+    </div>
+    <div class="nav-menu-btn">
+      <i class='bx bx-menu' onclick="myMenuFunction()"></i>
+    </div>
+  </nav>
+</div>
+
+<div class="dashboard-container">
+  <div class="welcome">
+    <h2>Welcome to MediConnect</h2>
+    <p>Your health, your care — all in one place.</p>
+  </div>
+
+  <div class="feature-buttons">
+    <a href="find_doctor.php" class="feature-box">
+      <h3>🔍<br>Find Doctor</h3>
+    </a>
+    <a href="book_ambulance.php" class="feature-box">
+      <h3>🚑<br>Book Ambulance</h3>
+    </a>
+    <a href="find_medicine.php" class="feature-box">
+      <h3>📃<br>Find Medicine</h3>
+    </a>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

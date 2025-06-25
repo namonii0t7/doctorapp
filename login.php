@@ -1,4 +1,6 @@
 <?php
+session_start(); // 🔐 Start the session
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -27,8 +29,12 @@ if ($result->num_rows > 0) {
     if ($row['status'] !== 'active') {
         echo "<script>alert('Please verify your email before logging in.'); window.history.back();</script>";
     } elseif (password_verify($pass, $row['password'])) {
-        // Login successful
-        echo "<script>alert('Login successful! Redirecting to homepage.'); window.location.href = 'user_homepage.php';</script>";
+        // ✅ Store login session
+        $_SESSION['user_id'] = $row['id'];
+        $_SESSION['name'] = $row['name'];
+        $_SESSION['email'] = $row['email'];
+
+        echo "<script>alert('Login successful! Redirecting to homepage.'); window.location.href = 'user_homepage.html';</script>";
     } else {
         echo "<script>alert('Wrong password.'); window.history.back();</script>";
     }

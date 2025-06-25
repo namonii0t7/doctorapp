@@ -52,20 +52,20 @@ $doctor = $result->fetch_assoc();
  <div class="wrapper">
         <nav class="nav">
             <div class="nav-logo">
-                <p>LOGO .</p>
+                <p>MediConnect .</p>
             </div>
             <div class="nav-menu" id="navMenu">
                 <ul>
-                    <li><a href="#" class="link active">Home</a></li>
+                    <li><a href="doctor_homepage.php" class="link active">Home</a></li>
                     <li><a href="#" class="link">Blog</a></li>
                     <li><a href="#" class="link">Services</a></li>
-                    <li><a href="#" class="link">About</a></li>
+                    <li><a href="about.html" class="link">About</a></li>
                 </ul>
             </div>
             <div class="nav-button">
                 <!-- Keep classes and design, but change onclick to redirect -->
                 <button class="btn white-btn" id="loginBtn" onclick="window.location.href='doctor_profile.php?action=login'">Profile</button>
-                <button class="btn" id="registerBtn" onclick="window.location.href='index.html?action=register'">Sign Up</button>
+                <button class="btn" id="registerBtn" onclick="window.location.href='logout.php?action=register'">logout</button>
             </div>
             <div class="nav-menu-btn">
                 <i class="bx bx-menu" onclick="myMenuFunction()"></i>

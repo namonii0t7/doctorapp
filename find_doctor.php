@@ -4,12 +4,12 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT s.id AS schedule_id, s.day, s.start_time, s.end_time, s.max_patients,
+$sql = "SELECT s.id AS schedule_id, s.date, s.start_time, s.end_time, s.max_patients,
                d.id AS doctor_id, d.firstname, d.lastname, d.specialization, d.chamber
         FROM schedules s
         JOIN doctors d ON s.doctor_id = d.id
         WHERE d.status = 'verified'
-        ORDER BY FIELD(s.day, 'Saturday','Sunday','Monday','Tuesday','Wednesday','Thursday','Friday')";
+        ORDER BY s.date, s.start_time";
 
 $schedules = $conn->query($sql);
 ?>
@@ -25,14 +25,13 @@ $schedules = $conn->query($sql);
 <body>
   <nav class="nav">
     <div class="nav-logo">
-      <p>LOGO .</p>
+      <p>MediConnect .</p>
     </div>
     <div class="nav-menu" id="navMenu">
       <ul>
-        <li><a href="#" class="link active">Home</a></li>
-        <li><a href="#" class="link">Blog</a></li>
+        <li><a href="user_homepage.html" class="link active">Home</a></li>
         <li><a href="#" class="link">Services</a></li>
-        <li><a href="#" class="link">About</a></li>
+        <li><a href="about.html" class="link">About Us</a></li>
       </ul>
     </div>
     <div class="search-bar">
@@ -40,8 +39,8 @@ $schedules = $conn->query($sql);
       <button type="button" onclick="search()">Search</button>
     </div>
     <div class="nav-button">
-      <button class="btn white-btn" onclick="window.location.href='login.html'">Login</button>
-      <button class="btn" onclick="window.location.href='register.html'">Sign Up</button>
+      <button class="btn white-btn" onclick="window.location.href='logout.php'">Log out</button>
+      <button class="btn" onclick="window.location.href='user_profile.php'">Profile</button>
     </div>
     <div class="nav-menu-btn">
       <i class="bx bx-menu" onclick="myMenuFunction()"></i>
@@ -55,7 +54,7 @@ $schedules = $conn->query($sql);
         <th>Doctor</th>
         <th>Specialization</th>
         <th>Location</th>
-        <th>Day</th>
+        <th>Date</th>
         <th>Time</th>
         <th>Book Appointment</th>
         <th>Visit Profile</th>
@@ -65,21 +64,19 @@ $schedules = $conn->query($sql);
           <td class="doctor-name"><?= htmlspecialchars($row['firstname'] . ' ' . $row['lastname']) ?></td>
           <td class="specialization"><?= htmlspecialchars($row['specialization']) ?></td>
           <td class="location"><?= htmlspecialchars($row['chamber']) ?></td>
-          <td><?= $row['day'] ?></td>
+          <td><?= htmlspecialchars($row['date']) ?></td>
           <td><?= date("g:i A", strtotime($row['start_time'])) ?> - <?= date("g:i A", strtotime($row['end_time'])) ?></td>
           <td>
             <form action="appointment_form.php" method="GET">
-  <input type="hidden" name="schedule_id" value="<?= $row['schedule_id'] ?>">
-  <button type="submit" class="submit">Go to</button>
-</form>
-
+              <input type="hidden" name="schedule_id" value="<?= $row['schedule_id'] ?>">
+              <button type="submit" class="submit">Go to</button>
+            </form>
           </td>
           <td>
-           <form action="visit_doctor_profile.php" method="GET">
-  <input type="hidden" name="id" value="<?= $row['doctor_id'] ?>">
-  <button type="submit" class="submit">View</button>
-</form>
-
+            <form action="visit_doctor_profile.php" method="GET">
+              <input type="hidden" name="id" value="<?= $row['doctor_id'] ?>">
+              <button type="submit" class="submit">View</button>
+            </form>
           </td>
         </tr>
       <?php endwhile; ?>
