@@ -4,7 +4,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT s.id AS schedule_id, s.date, s.start_time, s.end_time, s.max_patients,
+$sql = "SELECT s.id AS schedule_id, s.date, s.start_time, s.end_time, s.max_patients, s.appointment_fees,
                d.id AS doctor_id, d.firstname, d.lastname, d.specialization, d.chamber
         FROM schedules s
         JOIN doctors d ON s.doctor_id = d.id
@@ -56,6 +56,7 @@ $schedules = $conn->query($sql);
         <th>Location</th>
         <th>Date</th>
         <th>Time</th>
+        <th>Fees</th>
         <th>Book Appointment</th>
         <th>Visit Profile</th>
       </tr>
@@ -66,6 +67,7 @@ $schedules = $conn->query($sql);
           <td class="location"><?= htmlspecialchars($row['chamber']) ?></td>
           <td><?= htmlspecialchars($row['date']) ?></td>
           <td><?= date("g:i A", strtotime($row['start_time'])) ?> - <?= date("g:i A", strtotime($row['end_time'])) ?></td>
+          <td>৳<?= htmlspecialchars(number_format($row['appointment_fees'], 2)) ?></td>
           <td>
             <form action="appointment_form.php" method="GET">
               <input type="hidden" name="schedule_id" value="<?= $row['schedule_id'] ?>">

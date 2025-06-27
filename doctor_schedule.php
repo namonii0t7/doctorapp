@@ -63,6 +63,9 @@ $schedules = $conn->query("SELECT * FROM schedules WHERE doctor_id = $doctor_id 
         <label for="max_patients">Max Patients:</label>
         <input type="number" name="max_patients" min="1" required>
 
+        <label for="max_patients">Appointment Fees:</label>
+        <input type="number" name="appointment_fees"  required>
+
         <input type="submit" value="Save Schedule">
       </form>
 
@@ -73,6 +76,7 @@ $schedules = $conn->query("SELECT * FROM schedules WHERE doctor_id = $doctor_id 
           <th>Start Time</th>
           <th>End Time</th>
           <th>Max Patients</th>
+          <th>Appointment Fees</th>
           <th>Action</th>
         </tr>
         <?php while($row = $schedules->fetch_assoc()): ?>
@@ -81,6 +85,7 @@ $schedules = $conn->query("SELECT * FROM schedules WHERE doctor_id = $doctor_id 
             <td><?= date("g:i A", strtotime($row['start_time'])) ?></td>
             <td><?= date("g:i A", strtotime($row['end_time'])) ?></td>
             <td><?= $row['max_patients'] ?></td>
+            <td><?= $row['appointment_fees'] ?></td>
             <td>
               <form action="delete_schedule.php" method="POST" style="margin:0;">
                 <input type="hidden" name="id" value="<?= $row['id'] ?>">

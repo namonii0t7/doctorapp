@@ -87,7 +87,7 @@ $user = $result->fetch_assoc();
       ?></textarea>
 
       <div class="buttons">
-        <button type="button" class="btn white-btn" onclick="window.location.href='edit_user.php'">Edit Profile</button>
+        <button type="button" class="btn white-btn" onclick="window.location.href='edit_user_profile.php'">Edit Profile</button>
         <a href="logout.php" class="btn">Logout</a>
         <a href="delete_user.php" class="btn danger" onclick="return confirm('Are you sure you want to delete your account?');">Delete Account</a>
       </div>
