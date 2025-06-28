@@ -18,7 +18,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// 🟡 Check if user already booked this schedule
+//  Check if user already booked this schedule
 $check_appointment = $conn->prepare("SELECT id FROM appointments WHERE schedule_id = ? AND user_id = ?");
 $check_appointment->bind_param("ii", $schedule_id, $user_id);
 $check_appointment->execute();
@@ -30,7 +30,7 @@ if ($check_appointment->num_rows > 0) {
 }
 $check_appointment->close();
 
-// 🟡 Check if slots are full
+//  Check if slots are full
 $slot_query = $conn->prepare("
     SELECT COUNT(a.id) AS booked, s.max_patients, s.appointment_fees, s.doctor_id
     FROM schedules s
@@ -53,7 +53,7 @@ if ($booked >= $max_patients) {
     exit();
 }
 
-// 🔵 Get doctor phone
+// Get doctor phone
 $stmt2 = $conn->prepare("SELECT phone FROM doctors WHERE id = ?");
 $stmt2->bind_param("i", $doctor_id);
 $stmt2->execute();

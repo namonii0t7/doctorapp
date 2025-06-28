@@ -63,7 +63,7 @@ $doctor = $result->fetch_assoc();
                 </ul>
             </div>
             <div class="nav-button">
-                <!-- Keep classes and design, but change onclick to redirect -->
+                
                 <button class="btn white-btn" id="loginBtn" onclick="window.location.href='doctor_profile.php?action=login'">Profile</button>
                 <button class="btn" id="registerBtn" onclick="window.location.href='logout.php?action=register'">logout</button>
             </div>

@@ -8,7 +8,7 @@ $sql = "SELECT s.id AS schedule_id, s.date, s.start_time, s.end_time, s.max_pati
                d.id AS doctor_id, d.firstname, d.lastname, d.specialization, d.chamber
         FROM schedules s
         JOIN doctors d ON s.doctor_id = d.id
-        WHERE d.status = 'verified'
+        WHERE d.status = 'verified' AND s.status = 'active'
         ORDER BY s.date, s.start_time";
 
 $schedules = $conn->query($sql);

@@ -9,41 +9,58 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Auto-delete past schedules (based on current date and time)
+// Mark past schedules as expired (soft-delete)
 $today = date('Y-m-d');
 $current_time = date('H:i:s');
-$conn->query("DELETE FROM schedules WHERE date = '$today' AND end_time < '$current_time'");
+$conn->query("UPDATE schedules SET status = 'expired' WHERE date = '$today' AND end_time < '$current_time' AND status = 'active'");
 
 $doctor_id = $_SESSION['doctor_id'];
-$schedules = $conn->query("SELECT * FROM schedules WHERE doctor_id = $doctor_id ORDER BY date");
+// Fetch only active schedules
+$schedules = $conn->query("SELECT * FROM schedules WHERE doctor_id = $doctor_id AND status = 'active' ORDER BY date");
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Doctor Schedule</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Optional: style your delete button */
+    .delete-btn {
+      background-color: #e74c3c;
+      border: none;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    .delete-btn:hover {
+      background-color: #c0392b;
+    }
+  </style>
 </head>
 <body>
   <nav class="nav">
     <div class="nav-logo">
-        <p>MediConnect .</p>
+      <p>MediConnect .</p>
     </div>
     <div class="nav-menu" id="navMenu">
-        <ul>
-            <li><a href="doctor_homepage.php" class="link active">Home</a></li>
-            <li><a href="#" class="link">Blog</a></li>
-            <li><a href="#" class="link">Services</a></li>
-            <li><a href="about.html" class="link">About</a></li>
-        </ul>
+      <ul>
+        <li><a href="doctor_homepage.php" class="link active">Home</a></li>
+        <li><a href="#" class="link">Blog</a></li>
+        <li><a href="#" class="link">Services</a></li>
+        <li><a href="about.html" class="link">About</a></li>
+      </ul>
     </div>
     <div class="nav-button">
-        <button class="btn white-btn" id="loginBtn" onclick="window.location.href='doctor_profile.php?action=login'">Profile</button>
-        <button class="btn" id="registerBtn" onclick="window.location.href='doclog.html?action=register'">Log out</button>
+      <button class="btn white-btn" id="loginBtn" onclick="window.location.href='doctor_profile.php?action=login'">Profile</button>
+      <button class="btn" id="registerBtn" onclick="window.location.href='doclog.html?action=register'">Log out</button>
     </div>
     <div class="nav-menu-btn">
-        <i class="bx bx-menu" onclick="myMenuFunction()"></i>
+      <i class="bx bx-menu" onclick="myMenuFunction()"></i>
     </div>
   </nav>
 
@@ -63,8 +80,8 @@ $schedules = $conn->query("SELECT * FROM schedules WHERE doctor_id = $doctor_id 
         <label for="max_patients">Max Patients:</label>
         <input type="number" name="max_patients" min="1" required>
 
-        <label for="max_patients">Appointment Fees:</label>
-        <input type="number" name="appointment_fees"  required>
+        <label for="appointment_fees">Appointment Fees:</label>
+        <input type="number" name="appointment_fees" required>
 
         <input type="submit" value="Save Schedule">
       </form>
@@ -84,8 +101,8 @@ $schedules = $conn->query("SELECT * FROM schedules WHERE doctor_id = $doctor_id 
             <td><?= htmlspecialchars($row['date']) ?></td>
             <td><?= date("g:i A", strtotime($row['start_time'])) ?></td>
             <td><?= date("g:i A", strtotime($row['end_time'])) ?></td>
-            <td><?= $row['max_patients'] ?></td>
-            <td><?= $row['appointment_fees'] ?></td>
+            <td><?= htmlspecialchars($row['max_patients']) ?></td>
+            <td><?= htmlspecialchars($row['appointment_fees']) ?></td>
             <td>
               <form action="delete_schedule.php" method="POST" style="margin:0;">
                 <input type="hidden" name="id" value="<?= $row['id'] ?>">

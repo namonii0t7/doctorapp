@@ -13,8 +13,8 @@ if ($conn->connect_error) {
 $id = $_POST['id'];
 $doctor_id = $_SESSION['doctor_id'];
 
-// Make sure doctor is deleting only their own schedule
-$stmt = $conn->prepare("DELETE FROM schedules WHERE id = ? AND doctor_id = ?");
+// Soft delete: mark schedule as expired instead of deleting
+$stmt = $conn->prepare("UPDATE schedules SET status = 'expired' WHERE id = ? AND doctor_id = ?");
 $stmt->bind_param("ii", $id, $doctor_id);
 $stmt->execute();
 
