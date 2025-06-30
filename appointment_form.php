@@ -80,7 +80,7 @@ $stmt2->close();
     <div class="nav-menu" id="navMenu">
       <ul>
         <li><a href="user_homepage.html" class="link active">Home</a></li>
-        <li><a href="#" class="link">Blog</a></li>
+        <li><a href="blog.php" class="link">Blog</a></li>
         <li><a href="#" class="link">Services</a></li>
         <li><a href="about.html" class="link">About</a></li>
       </ul>
@@ -109,7 +109,7 @@ $stmt2->close();
       </p>
 
       <p style="color:white;text-align:center; font-weight:bold;">
-        Please pay <?= htmlspecialchars($appointment_fees) ?> tk to this number: <?= htmlspecialchars($doctor_phone) ?>
+        Please pay <?= htmlspecialchars($appointment_fees) ?> tk to this number: <?= htmlspecialchars($doctor_phone) ?> and enter your payment details
       </p>
 
       <label style="color:white;">bKash Number</label>

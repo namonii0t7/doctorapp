@@ -32,7 +32,7 @@ $user = $result->fetch_assoc();
         <div class="nav-menu" id="navMenu">
             <ul>
                 <li><a href="home.html" class="link active">Home</a></li>
-                <li><a href="#" class="link">Blog</a></li>
+                <li><a href="blog.php" class="link">Blog</a></li>
                 <li><a href="#" class="link">About</a></li>
             </ul>
         </div>

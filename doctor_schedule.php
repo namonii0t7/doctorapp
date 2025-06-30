@@ -50,7 +50,7 @@ $schedules = $conn->query("SELECT * FROM schedules WHERE doctor_id = $doctor_id 
     <div class="nav-menu" id="navMenu">
       <ul>
         <li><a href="doctor_homepage.php" class="link active">Home</a></li>
-        <li><a href="#" class="link">Blog</a></li>
+        <li><a href="blog.php" class="link">Blog</a></li>
         <li><a href="#" class="link">Services</a></li>
         <li><a href="about.html" class="link">About</a></li>
       </ul>

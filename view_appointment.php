@@ -83,8 +83,9 @@ $sql = "SELECT
         JOIN users u ON a.user_id = u.id
         JOIN schedules s ON a.schedule_id = s.id
         LEFT JOIN bkash_payments bp ON bp.schedule_id = s.id AND bp.user_id = u.id
-        WHERE s.doctor_id = ?
+        WHERE s.doctor_id = ? AND s.status = 'active'
         ORDER BY s.date, s.start_time, a.id";
+
 
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $_SESSION['doctor_id']);

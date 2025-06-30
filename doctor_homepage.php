@@ -37,7 +37,7 @@ $doctor = $result->fetch_assoc();
     <div class="nav-menu" id="navMenu">
       <ul>
         <li><a href="doctor_homepage.php" class="link active">Home</a></li>
-        <li><a href="#" class="link">Blog</a></li>
+        <li><a href="blog.php" class="link">Blog</a></li>
         <li><a href="#" class="link">Services</a></li>
         <li><a href="about.html" class="link">About</a></li>
       </ul>
@@ -68,6 +68,10 @@ $doctor = $result->fetch_assoc();
     <a href="patient_records.php" class="feature-box">
       <h3>🧑‍⚕️<br>Patient Records</h3>
     </a>
+    <a href="post_blog.php" class="feature-box">
+    <h3>✍️<br>Post Your Blog</h3>
+    </a>
+
   </div>
 </div>
 

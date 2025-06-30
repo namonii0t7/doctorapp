@@ -66,16 +66,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($insert_payment->execute()) {
             echo "<h2 style='color:green; text-align:center;'>Your payment details have been submitted.</h2>";
             echo "<p style='text-align:center;'>We will reach out via email to confirm your appointment.</p>";
-            echo "<p style='text-align:center;'><a href='user_homepage.php'>Return to Home</a></p>";
+            echo "<p style='text-align:center;'><a href='user_homepage.html'>Return to Home</a></p>";
         } else {
             echo "<h2 style='color:red; text-align:center;'>Appointment booked but payment failed!</h2>";
-            echo "<p style='text-align:center;'><a href='user_homepage.php'>Return to Home</a></p>";
+            echo "<p style='text-align:center;'><a href='user_homepage.html'>Return to Home</a></p>";
         }
 
         $insert_payment->close();
     } else {
         echo "<h2 style='color:red; text-align:center;'>Failed to book appointment.</h2>";
-        echo "<p style='text-align:center;'><a href='user_homepage.php'>Return to Home</a></p>";
+        echo "<p style='text-align:center;'><a href='user_homepage.html'>Return to Home</a></p>";
     }
 
     $insert_appointment->close();

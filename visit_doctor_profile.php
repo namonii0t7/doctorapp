@@ -43,7 +43,7 @@ if (!$doctor) {
       <div class="nav-menu" id="navMenu">
         <ul>
           <li><a href="user_homepage.html" class="link active">Home</a></li>
-          <li><a href="#" class="link">Blog</a></li>
+          <li><a href="blog.php" class="link">Blog</a></li>
           <li><a href="#" class="link">Services</a></li>
           <li><a href="about.html" class="link">About</a></li>
         </ul>
