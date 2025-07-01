@@ -55,3 +55,16 @@ document.getElementById('editBtn').addEventListener('click', function () {
   });
   document.getElementById('saveBtn').style.display = 'inline-block';
 });
+
+
+ function myMenuFunction() {
+  const menu = document.getElementById("mobileMenu");
+  menu.classList.add("show");
+}
+
+function closeMobileMenu() {
+  const menu = document.getElementById("mobileMenu");
+  menu.classList.remove("show");
+}
+
+

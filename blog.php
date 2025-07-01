@@ -17,7 +17,8 @@ $result = $conn->query($sql);
 <head>
   <meta charset="UTF-8">
   <title>All Blog Posts</title>
-  <link rel="stylesheet" href="style.css"> <!-- Use your main site CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"> 
   <style>
     .blog-container {
       max-width: 1000px;

@@ -30,32 +30,38 @@ if (!$doctor) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Doctor Profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="profile.css" />
   
 </head>
 <body>
 
   <div class="wrapper">
-    <nav class="nav">
-      <div class="nav-logo">
-        <p>MediConnect .</p>
-      </div>
-      <div class="nav-menu" id="navMenu">
-        <ul>
-          <li><a href="user_homepage.html" class="link active">Home</a></li>
-          <li><a href="blog.php" class="link">Blog</a></li>
-          <li><a href="#" class="link">Services</a></li>
-          <li><a href="about.html" class="link">About</a></li>
-        </ul>
-      </div>
-      <div class="nav-button">
-        <button class="btn white-btn" onclick="window.location.href='user_profile.php'">Profile</button>
-        <button class="btn" onclick="window.location.href='logout.php'">Log out</button>
-      </div>
-      <div class="nav-menu-btn">
-        <i class="bx bx-menu" onclick="myMenuFunction()"></i>
-      </div>
-    </nav>
+     <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">MediConnect .</a>
+
+    <!-- Burger Button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Nav links -->
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link active" href="user_homepage.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="blog.php">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+      </ul>
+      <div class="d-flex ms-3 gap-2">
+  <button class="btn custom-btn btn-signin" onclick="window.location.href='user_profile.php?action=login'">Profile</button>
+  <button class="btn custom-btn btn-signup" onclick="window.location.href='logout.php?action=register'">Log out</button>
+</div>
+
+    </div>
+  </div>
+</nav>>
   </div>
 
   <div class="profile-container">
@@ -88,5 +94,6 @@ if (!$doctor) {
   </div>
 
   <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -29,7 +29,8 @@ if (!$post) {
 <head>
   <meta charset="UTF-8">
   <title><?php echo htmlspecialchars($post['title']); ?></title>
-  <link rel="stylesheet" href="style.css"> <!-- This is your main CSS -->
+  <link rel="stylesheet" href="style.css"> 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     .blog-container {
       max-width: 900px;

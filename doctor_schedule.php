@@ -24,6 +24,7 @@ $schedules = $conn->query("SELECT * FROM schedules WHERE doctor_id = $doctor_id 
 <head>
   <meta charset="UTF-8" />
   <title>Doctor Schedule</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <style>
     /* Optional: style your delete button */
@@ -43,26 +44,32 @@ $schedules = $conn->query("SELECT * FROM schedules WHERE doctor_id = $doctor_id 
   </style>
 </head>
 <body>
-  <nav class="nav">
-    <div class="nav-logo">
-      <p>MediConnect .</p>
-    </div>
-    <div class="nav-menu" id="navMenu">
-      <ul>
-        <li><a href="doctor_homepage.php" class="link active">Home</a></li>
-        <li><a href="blog.php" class="link">Blog</a></li>
-        <li><a href="#" class="link">Services</a></li>
-        <li><a href="about.html" class="link">About</a></li>
+      <!-- Navbar -->
+   <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">MediConnect .</a>
+
+    <!-- Burger Button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Nav links -->
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link active" href="doctor_homepage.php">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="blog.php">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
       </ul>
+      <div class="d-flex ms-3 gap-2">
+  <button class="btn custom-btn btn-signin" onclick="window.location.href='doctor_profile.php'">Profile</button>
+  <button class="btn custom-btn btn-signup" onclick="window.location.href='logout.php'">Log out</button>
+</div>
+
     </div>
-    <div class="nav-button">
-      <button class="btn white-btn" id="loginBtn" onclick="window.location.href='doctor_profile.php?action=login'">Profile</button>
-      <button class="btn" id="registerBtn" onclick="window.location.href='doclog.html?action=register'">Log out</button>
-    </div>
-    <div class="nav-menu-btn">
-      <i class="bx bx-menu" onclick="myMenuFunction()"></i>
-    </div>
-  </nav>
+  </div>
+</nav>>
 
   <div class="wrapper">
     <div class="schedule-box">
@@ -114,5 +121,6 @@ $schedules = $conn->query("SELECT * FROM schedules WHERE doctor_id = $doctor_id 
       </table>
     </div>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

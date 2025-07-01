@@ -51,6 +51,7 @@ $result = $stmt->get_result();
 <head>
   <meta charset="UTF-8" />
   <title>Doctor Patients</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <style>
@@ -62,6 +63,7 @@ $result = $stmt->get_result();
       overflow: auto;
       font-family: 'Poppins', sans-serif;
     }
+
     h2.page-title {
       text-align: center;
       margin: 120px 0 30px 0;
@@ -69,16 +71,19 @@ $result = $stmt->get_result();
       font-weight: 600;
       font-size: 2rem;
     }
+
     .wrapper {
       max-width: 1200px;
       margin: 0 auto 40px auto;
       padding: 0 20px;
     }
+
     .patients-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
       gap: 30px;
     }
+
     .patient-box {
       background: rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(12px);
@@ -90,16 +95,19 @@ $result = $stmt->get_result();
       justify-content: space-between;
       width: 100%;
     }
+
     .patient-box h3 {
       font-size: 22px;
       color: white;
       margin-bottom: 6px;
     }
+
     .patient-box p {
       margin: 4px 0;
       font-size: 15px;
       color: #eee;
     }
+
     .patient-box .btn {
       margin-top: 12px;
       background: rgba(255, 255, 255, 0.7);
@@ -114,9 +122,11 @@ $result = $stmt->get_result();
       transition: background-color 0.3s ease;
       align-self: flex-start;
     }
+
     .patient-box .btn:hover {
       background: rgba(255, 255, 255, 0.5);
     }
+
     .record-section {
       margin-top: 15px;
       background: transparent;
@@ -126,53 +136,66 @@ $result = $stmt->get_result();
       color: #ddd;
       line-height: 1.4;
     }
+
     .record-section strong {
       color: #fff;
     }
-    /* Search in navbar */
-    .search-container {
-      margin-left: 30px;
+
+    .custom-btn {
+      border-radius: 30px;
+      padding: 8px 20px;
+      font-weight: 500;
+      transition: 0.3s ease;
+      font-family: 'Poppins', sans-serif;
     }
-    .search-container input {
-      padding: 6px 14px;
-      border-radius: 20px;
+
+    .btn-signin {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
       border: none;
-      font-size: 14px;
-      width: 220px;
+      backdrop-filter: blur(10px);
     }
-    @media (max-width: 768px) {
-      .search-container {
-        margin: 10px auto;
-        text-align: center;
-      }
+
+    .btn-signin:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-signup {
+      background: rgba(255, 255, 255, 0.4);
+      color: #000;
+      border: none;
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-signup:hover {
+      background: rgba(255, 255, 255, 0.6);
     }
   </style>
 </head>
 <body>
 
-  <nav class="nav">
-    <div class="nav-logo">
-      <p>MediConnect .</p>
-    </div>
-    <div class="nav-menu" id="navMenu">
-      <ul>
-        <li><a href="doctor_homepage.php" class="link active">Home</a></li>
-        <li><a href="blog.php" class="link">Blog</a></li>
-        <li><a href="#" class="link">Services</a></li>
-        <li><a href="about.html" class="link">About</a></li>
-      </ul>
-    </div>
-
-    <div class="search-container">
-      <input type="text" id="searchInput" placeholder="Search patients..." />
-    </div>
-
-    <div class="nav-button">
-      <button class="btn white-btn" onclick="window.location.href='doctor_profile.php'">Profile</button>
-      <button class="btn" onclick="window.location.href='logout.php'">Logout</button>
-    </div>
-    <div class="nav-menu-btn">
-      <i class="bx bx-menu" onclick="myMenuFunction()"></i>
+  <!-- Bootstrap Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top px-4">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="#">MediConnect<span class="text-primary"> .</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="doctor_homepage.php">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.php">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        </ul>
+        <form class="d-flex me-3" role="search">
+          <input class="form-control rounded-pill" type="search" placeholder="Search patients..." id="searchInput">
+        </form>
+        <div class="d-flex gap-2">
+          <button class="btn custom-btn btn-signup" onclick="window.location.href='doctor_profile.php'">Profile</button>
+          <button class="btn custom-btn btn-signin" onclick="window.location.href='logout.php'">Logout</button>
+        </div>
+      </div>
     </div>
   </nav>
 
@@ -230,6 +253,7 @@ $result = $stmt->get_result();
     });
   </script>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 
