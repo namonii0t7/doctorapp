@@ -21,7 +21,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding-top: 100px; /* Add this */
+  padding-top: 100px; 
   box-sizing: border-box;
   background: rgba(39, 39, 39, 0.4);
 }
@@ -31,6 +31,7 @@ body {
 
 .custom-btn {
   border-radius: 30px;
+  background: #cccccce7;
   padding: 8px 20px;
   font-weight: 500;
   transition: 0.3s ease;
@@ -38,8 +39,8 @@ body {
 }
 
 .btn-signin {
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.877);
+  color: #000;
   border: none;
   backdrop-filter: blur(10px);
 }
@@ -49,7 +50,7 @@ body {
 }
 
 .btn-signup {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.769);
   color: #000;
   border: none;
   backdrop-filter: blur(10px);

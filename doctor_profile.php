@@ -36,6 +36,7 @@ $post_result = $post_stmt->get_result();
   <title>Doctor Profile</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="profile.css" />
+
   <style>
     .profile-photo img {
       width: 150px;
@@ -61,7 +62,8 @@ $post_result = $post_stmt->get_result();
       width: 100%;
       padding: 20px;
       margin-top: 40px;
-      background: transparent;
+      background: rgba(255, 255, 255, 0.04);
+      
       border-radius: 10px;
     }
 
@@ -73,7 +75,7 @@ $post_result = $post_stmt->get_result();
     .blog-post {
       margin-bottom: 30px;
       padding: 15px;
-      background: transparent;
+      background: rgba(255,255,255,0.10);
       border-left: 5px solid #0b7dda;
       border-radius: 5px;
     }
@@ -113,21 +115,21 @@ $post_result = $post_stmt->get_result();
 </head>
 <body>
 
-<div class="wrapper">
+
      <!-- Navbar -->
    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">MediConnect .</a>
 
     <!-- Burger Button -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <!-- Nav links -->
     <div class="collapse navbar-collapse" id="mainNavbar">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link active" href="doctor_homepahe.php">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="doctor_homepage.php">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="blog.php">Blog</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
         <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
@@ -140,7 +142,7 @@ $post_result = $post_stmt->get_result();
     </div>
   </div>
 </nav>
-</div>
+
 
 <div class="profile-container" style="flex-direction: column;">
   <!-- Profile Box -->

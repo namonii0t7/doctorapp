@@ -15,7 +15,6 @@ $doctor_id = $_SESSION['doctor_id'];
 $sql = "
   SELECT 
     a.id AS appointment_id, 
-    a.user_id AS appt_user_id,
     u.id AS user_id, 
     u.firstname, 
     u.lastname, 
@@ -33,10 +32,16 @@ $sql = "
     pr.notes, 
     pr.next_appointment
   FROM appointments a
+  JOIN (
+      SELECT MAX(a2.id) AS latest_appointment_id
+      FROM appointments a2
+      JOIN schedules s2 ON a2.schedule_id = s2.id
+      WHERE s2.doctor_id = ? AND a2.status = 'approved'
+      GROUP BY a2.user_id
+  ) latest ON latest.latest_appointment_id = a.id
   JOIN users u ON a.user_id = u.id
   JOIN schedules s ON a.schedule_id = s.id
   LEFT JOIN patient_records pr ON pr.appointment_id = a.id AND pr.doctor_id = ?
-  WHERE s.doctor_id = ? AND a.status = 'approved'
   ORDER BY s.date DESC
 ";
 
@@ -44,6 +49,7 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("ii", $doctor_id, $doctor_id);
 $stmt->execute();
 $result = $stmt->get_result();
+
 ?>
 
 <!DOCTYPE html>
@@ -73,9 +79,14 @@ $result = $stmt->get_result();
     }
 
     .wrapper {
-      max-width: 1200px;
-      margin: 0 auto 40px auto;
-      padding: 0 20px;
+      display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 100px; 
+  box-sizing: border-box;
+  background: rgba(39, 39, 39, 0.4);  
     }
 
     .patients-grid {
@@ -173,9 +184,9 @@ $result = $stmt->get_result();
   </style>
 </head>
 <body>
-
+  <div class="wrapper">
   <!-- Bootstrap Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top px-4">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top px-4 mt-3">
     <div class="container-fluid">
       <a class="navbar-brand fw-bold" href="#">MediConnect<span class="text-primary"> .</span></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
@@ -201,7 +212,7 @@ $result = $stmt->get_result();
 
   <h2 class="page-title">Patients Who Booked Appointments</h2>
 
-  <div class="wrapper">
+  
     <?php if ($result->num_rows > 0): ?>
       <div class="patients-grid" id="patientsGrid">
         <?php while ($row = $result->fetch_assoc()): ?>
@@ -235,7 +246,7 @@ $result = $stmt->get_result();
     <?php else: ?>
       <p style="text-align:center; color:#ccc;">No patients have booked appointments yet.</p>
     <?php endif; ?>
-  </div>
+</div>
 
   <script>
     document.getElementById('searchInput').addEventListener('input', function () {

@@ -5,7 +5,7 @@ if (!isset($_SESSION['doctor_id'])) {
     exit();
 }
 
-require 'vendor/autoload.php';
+require 'vendor/autoload.php'; // for sending mail
 require 'config.php'; // contains EMAIL_USERNAME and EMAIL_PASSWORD
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -113,7 +113,7 @@ $result = $stmt->get_result();
 <?php endif; ?>
 
 <div class="wrapper">
-   <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top">
+   <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top mt-3">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">MediConnect .</a>
 

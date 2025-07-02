@@ -31,20 +31,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
   <meta charset="UTF-8">
   <title>Post Your Blog</title>
-  <link rel="stylesheet" href="profile.css"> <!-- reuse your CSS -->
+  <link rel="stylesheet" href="profile.css"> 
 </head>
 <body>
-  <div class="wrapper">
-    <h2>Write Your Health Article</h2>
+<div class="blog-page-wrapper">
+  <div class="blog-form-container">
     <form method="POST" action="">
-      <label>Title:</label><br>
-      <input type="text" name="title" required style="width:100%; padding:10px;"><br><br>
+      <h2>Write Your Health Article</h2>
 
-      <label>Content:</label><br>
-      <textarea name="content" rows="10" required style="width:100%; padding:10px;"></textarea><br><br>
+      <label>Title:</label>
+      <input type="text" name="title" required>
+
+      <label>Content:</label>
+      <textarea name="content" rows="10" required></textarea>
 
       <button type="submit" class="btn">Publish</button>
     </form>
   </div>
+</div>
+
 </body>
 </html>

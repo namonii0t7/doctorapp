@@ -75,7 +75,7 @@ $stmt2->close();
 </head>
 <body>
    <!-- Navbar -->
-   <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top">
+   <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top mt-3">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">MediConnect .</a>
 
@@ -123,14 +123,14 @@ $stmt2->close();
       </p>
 
       <label style="color:white;">bKash Number</label>
-      <input type="text" name="payer_number" placeholder="e.g. 01XXXXXXXXX" required pattern="01[0-9]{9}">
+      <input type="text" name="payer_number" placeholder="Bkash Number" class="input-field" required pattern="01[0-9]{9}">
 
       <label style="color:white;">Transaction ID (TrxID)</label>
-      <input type="text" name="trxid" placeholder="e.g. TX1234ABC" required>
+      <input type="text" name="trxid" placeholder="TrxID" class="input-field" required>
 
       <label style="color:white;">Amount (BDT)</label>
-      <input type="number" value="<?= htmlspecialchars($appointment_fees) ?>" readonly>
-
+      <input type="number" value="<?= htmlspecialchars($appointment_fees) ?>" class="input-field" readonly>
+      <label style="color:white;">Confirm</label>
       <button type="submit" class="submit">Confirm & Pay</button>
     </form>
   </div>

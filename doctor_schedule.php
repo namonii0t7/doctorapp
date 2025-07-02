@@ -45,7 +45,7 @@ $schedules = $conn->query("SELECT * FROM schedules WHERE doctor_id = $doctor_id 
 </head>
 <body>
       <!-- Navbar -->
-   <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top">
+   <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top mt-3">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">MediConnect .</a>
 

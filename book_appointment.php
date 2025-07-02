@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         die("Database connection failed: " . $conn->connect_error);
     }
 
-    // ✅ Check if schedule has slots available (handles 0-booking case)
+    // Check if schedule has slots available (handles 0-booking case)
     $count_query = $conn->prepare("SELECT 
                                       (SELECT COUNT(*) FROM appointments WHERE schedule_id = ?) AS booked,
                                       max_patients 
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit();
     }
 
-    // ✅ Check for duplicate transaction
+    // Check for duplicate transaction
     $check = $conn->prepare("SELECT id FROM bkash_payments WHERE trxid = ?");
     $check->bind_param("s", $trxid);
     $check->execute();
@@ -53,12 +53,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
     $check->close();
 
-    // ✅ Insert appointment
+    // Insert appointment
     $insert_appointment = $conn->prepare("INSERT INTO appointments (schedule_id, user_id, status) VALUES (?, ?, 'pending')");
     $insert_appointment->bind_param("ii", $schedule_id, $user_id);
 
     if ($insert_appointment->execute()) {
-        // ✅ Insert payment
+        //  Insert payment
         $insert_payment = $conn->prepare("INSERT INTO bkash_payments (user_id, schedule_id, payer_number, trxid, amount) 
                                           VALUES (?, ?, ?, ?, ?)");
         $insert_payment->bind_param("iissd", $user_id, $schedule_id, $payer_number, $trxid, $amount);

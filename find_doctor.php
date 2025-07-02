@@ -121,7 +121,7 @@ $schedules = $conn->query($sql);
 <body>
 
 <!-- Bootstrap Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top px-4">
+<nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top px-4 mt-3">
   <div class="container-fluid">
     <a class="navbar-brand fw-bold" href="#">MediConnect<span class="text-primary"> .</span></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">

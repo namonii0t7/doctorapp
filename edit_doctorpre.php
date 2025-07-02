@@ -25,7 +25,7 @@ $doctor = $result->fetch_assoc();
 </head>
 <body>
     <div class="wrapper">
-   <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top">
+   <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top mt-3">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">MediConnect .</a>
 

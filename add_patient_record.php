@@ -182,21 +182,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 
-<nav class="nav">
-  <div class="nav-logo"><p>MediConnect .</p></div>
-  <div class="nav-menu" id="navMenu">
-    <ul>
-      <li><a href="patient_records.php" class="link">Back to Patients</a></li>
-    </ul>
-  </div>
-  <div class="nav-button">
-    <button class="btn" onclick="window.location.href='doctor_profile.php'">Profile</button>
-    <button class="btn" onclick="window.location.href='logout.php'">Logout</button>
-  </div>
-  <div class="nav-menu-btn">
-    <i class="bx bx-menu" onclick="myMenuFunction()"></i>
-  </div>
-</nav>
+
 
 <div class="wrapper">
   <h2>Update Patient Record for <?= htmlspecialchars($user['firstname'] . ' ' . $user['lastname']) ?></h2>
