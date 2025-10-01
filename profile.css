@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 * {
   margin: 0;
@@ -30,7 +30,7 @@ body {
   backdrop-filter: blur(10px);
 }
 
-/* Custom navbar buttons */
+/* Custom navbar buttons 
 .custom-btn {
   border-radius: 30px;
   padding: 8px 20px;
@@ -61,7 +61,7 @@ body {
   background: rgba(255, 255, 255, 0.5);
 }
 
-/* Profile Container */
+/* Profile Container 
 .profile-container {
   display: flex;
   justify-content: center;
@@ -75,7 +75,7 @@ body {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
-/* Left Section */
+/* Left Section 
 .left-section {
   width: 35%;
   text-align: center;
@@ -102,7 +102,7 @@ body {
   color: #fff;
 }
 
-/* Right Section */
+/* Right Section 
 .right-section {
   width: 65%;
   padding: 20px;
@@ -132,7 +132,7 @@ label {
   color: #fff;
 }
 
-/* Buttons */
+/* Buttons 
 .buttons {
   display: flex;
   flex-wrap: wrap;
@@ -168,7 +168,7 @@ button:hover {
   background: rgba(255, 0, 0, 0.4);
 }
 
-/* Responsive */
+/* Responsive 
 @media only screen and (max-width: 768px) {
   .profile-container {
     flex-direction: column;
@@ -192,7 +192,7 @@ button:hover {
   }
 }
 
-/* Textarea */
+/* Textarea 
 textarea {
   width: 100%;
   padding: 12px;
@@ -211,7 +211,7 @@ textarea:focus {
   background: rgba(255, 255, 255, 0.25);
 }
 
-/* Doctor Dashboard Boxes */
+/* Doctor Dashboard Boxes 
 .dashboard-container {
   max-width: 960px;
   margin-top: 140px;
@@ -243,7 +243,7 @@ textarea:focus {
 .feature-buttons {
   display: flex;
   justify-content: space-around;
-  flex-wrap: wrap;
+ flex-wrap: wrap;
   gap: 30px;
 }
 
@@ -284,7 +284,7 @@ textarea:focus {
   }
 }
 
-/* Override for post_blog.php layout */
+/* Override for post_blog.php layout 
 .blog-page-wrapper {
   width: 100%;
   display: block;
@@ -324,4 +324,4 @@ textarea:focus {
 .blog-form-container input[type="text"]:focus,
 .blog-form-container textarea:focus {
   background: rgba(255, 255, 255, 0.25);
-}
+} */

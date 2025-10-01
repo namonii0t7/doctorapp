@@ -8,8 +8,11 @@ $sql = "SELECT s.id AS schedule_id, s.date, s.start_time, s.end_time, s.max_pati
                d.id AS doctor_id, d.firstname, d.lastname, d.specialization, d.chamber
         FROM schedules s
         JOIN doctors d ON s.doctor_id = d.id
-        WHERE d.status = 'verified' AND s.status = 'active'
+        WHERE d.status = 'verified' 
+          AND s.status = 'active' 
+          AND s.date >= CURDATE()
         ORDER BY s.date, s.start_time";
+
 
 $schedules = $conn->query($sql);
 ?>
@@ -18,61 +21,58 @@ $schedules = $conn->query($sql);
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <title>User Homepage | MediConnect</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <title>User Homepage</title>
   <style>
     body {
-      background: url("images/doc2.jpg");
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
       font-family: 'Poppins', sans-serif;
+      background-color: #f8f9fa;
+      min-height: 100vh;
     }
 
-    .custom-btn {
-      border-radius: 30px;
-      padding: 8px 20px;
-      font-weight: 500;
-      transition: 0.3s ease;
-      font-family: 'Poppins', sans-serif;
+    /* Navbar */
+    .navbar-custom {
+      background-color: #000;
     }
-
-    .btn-signin {
-      background: rgba(255, 255, 255, 0.2);
+    .navbar-custom .navbar-brand,
+    .navbar-custom .nav-link,
+    .navbar-custom .btn {
       color: #fff;
-      border: none;
-      backdrop-filter: blur(10px);
+    }
+    .navbar-custom .nav-link:hover {
+      color: #ccc;
     }
 
-    .btn-signin:hover {
-      background: rgba(255, 255, 255, 0.3);
-    }
-
-    .btn-signup {
-      background: rgba(255, 255, 255, 0.4);
+    /* Buttons */
+    .btn-black {
+      background-color: #fff;
       color: #000;
-      border: none;
-      backdrop-filter: blur(10px);
+      border: 1px solid #000;
+      border-radius: 30px;
+      font-weight: 500;
+      padding: 6px 18px;
+      transition: 0.3s;
+    }
+    .btn-black:hover {
+      background-color: #fff;
+      border-color: #000;
     }
 
-    .btn-signup:hover {
-      background: rgba(255, 255, 255, 0.6);
-    }
-
-    .schedule-box {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(8px);
-      margin: 140px auto 60px auto;
-      padding: 30px;
+    /* Main Box */
+    .main-box {
       max-width: 1200px;
+      margin: 140px auto 60px auto;
+      background-color: #000;
+      color: #fff;
+      padding: 30px;
       border-radius: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+      overflow-x: auto;
     }
 
-    .schedule-box h2 {
-      color: white;
+    .main-box h2 {
       text-align: center;
       margin-bottom: 30px;
       font-weight: 600;
@@ -80,55 +80,58 @@ $schedules = $conn->query($sql);
 
     table {
       width: 100%;
-      background-color: rgba(255, 255, 255, 0.05);
-      color: white;
-      border-radius: 10px;
-      overflow: hidden;
+      border-collapse: collapse;
+      color: #fff;
     }
 
     th, td {
       padding: 12px 15px;
       text-align: center;
       font-size: 15px;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
     }
 
     th {
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: rgba(255,255,255,0.1);
     }
 
     tr:nth-child(even) {
-      background-color: rgba(255, 255, 255, 0.05);
+      background-color: rgba(255,255,255,0.05);
     }
 
     .submit {
-      background-color: #ffd369;
+      background-color: #fff;
+      color: #000;
       border: none;
       padding: 6px 12px;
       border-radius: 8px;
       font-weight: 600;
       cursor: pointer;
+      transition: 0.3s;
     }
 
     .submit:hover {
-      background-color: #ffcc55;
+      background-color: #ccc;
     }
 
-    .form-control::placeholder {
-      font-size: 14px;
+    /* Search input */
+    .form-control {
+      border-radius: 30px;
+      padding: 6px 20px;
     }
   </style>
 </head>
 <body>
 
-<!-- Bootstrap Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top px-4 mt-3">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand fw-bold" href="#">MediConnect<span class="text-primary"> .</span></a>
+    <a class="navbar-brand fw-bold" href="#">MediConnect</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="mainNavbar">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-3">
         <li class="nav-item"><a class="nav-link active" href="user_homepage.html">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="blog.php">Blog</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
@@ -137,19 +140,20 @@ $schedules = $conn->query($sql);
 
       <!-- Search -->
       <form class="d-flex me-3" role="search">
-        <input class="form-control rounded-pill" type="search" placeholder="Search by location..." id="searchInput">
+        <input class="form-control" type="search" placeholder="Search by location..." id="searchInput">
       </form>
 
       <!-- Buttons -->
       <div class="d-flex gap-2">
-        <button class="btn custom-btn btn-signin" onclick="window.location.href='logout.php'">Log out</button>
-        <button class="btn custom-btn btn-signup" onclick="window.location.href='user_profile.php'">Profile</button>
+        <button class="btn btn-black" onclick="window.location.href='logout.php'">Log out</button>
+        <button class="btn btn-black" onclick="window.location.href='user_profile.php'">Profile</button>
       </div>
     </div>
   </div>
 </nav>
 
-<div class="schedule-box">
+<!-- Main Box -->
+<div class="main-box">
   <h2>Available Doctor Schedules</h2>
   <table id="scheduleTable">
     <tr>
@@ -187,6 +191,17 @@ $schedules = $conn->query($sql);
   </table>
 </div>
 
+<footer class="bg-dark text-white text-center py-3">
+  <div class="container">
+    <p class="mb-1">&copy; 2025 MediConnect. All rights reserved.</p>
+    <p class="mb-0">
+      <a href="about.html" class="text-white text-decoration-underline">About</a> | 
+      <a href="blog.php" class="text-white text-decoration-underline">Blog</a> | 
+      <a href="#" class="text-white text-decoration-underline">Services</a>
+    </p>
+  </div>
+</footer>
+
 <script>
   document.getElementById('searchInput').addEventListener('input', search);
 
@@ -199,11 +214,7 @@ $schedules = $conn->query($sql);
       const specialization = rows[i].querySelector('.specialization')?.textContent.toLowerCase().trim() || '';
       const location = rows[i].querySelector('.location')?.textContent.toLowerCase().trim() || '';
 
-      if (
-        doctorName.includes(input) ||
-        specialization.includes(input) ||
-        location.includes(input)
-      ) {
+      if (doctorName.includes(input) || specialization.includes(input) || location.includes(input)) {
         rows[i].style.display = '';
       } else {
         rows[i].style.display = 'none';
@@ -211,6 +222,7 @@ $schedules = $conn->query($sql);
     }
   }
 </script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

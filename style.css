@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 * {
   margin: 0;
@@ -15,7 +15,7 @@ body {
   overflow: auto;
 }
 
-/* Common layout styles */
+/* Common layout styles 
 .wrapper {
   display: flex;
   justify-content: center;
@@ -27,7 +27,7 @@ body {
 }
 
 
-/* Custom navbar buttons */
+/* Custom navbar buttons 
 
 .custom-btn {
   border-radius: 30px;
@@ -62,7 +62,7 @@ body {
 
 
 
-/* Login/Register containers */
+/* Login/Register containers 
 .form-box {
   position: relative;
   display: flex;
@@ -193,7 +193,7 @@ header {
   text-decoration: underline;
 }
 
-/* Doctor-specific form box */
+/* Doctor-specific form box 
 .form-box-doctor {
   display: flex;
   align-items: center;
@@ -273,10 +273,10 @@ header {
   gap: 10px;
 }
 
-/*------*/
+/*------
 
 .schedule-box {
-  max-width: 1100px; /* Increased width */
+  max-width: 1100px; /* Increased width 
   width: 95%;
   margin: 120px auto 40px auto;
   background: rgba(255, 255, 255, 0.1);
@@ -363,7 +363,7 @@ header {
   background: #cc0000;
 }
 
-/* ===== Search Bar (used in user homepage) ===== */
+/* ===== Search Bar (used in user homepage) ===== 
 .search-bar {
   display: flex;
   align-items: center;
@@ -389,8 +389,3 @@ header {
 .search-bar button:hover {
   background-color: transparent;
 }
-
-
-
-
-

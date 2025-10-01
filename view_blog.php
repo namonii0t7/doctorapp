@@ -32,15 +32,19 @@ if (!$post) {
   <link rel="stylesheet" href="style.css"> 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
+    body {
+      background: #f5f5f5; /* light background for contrast */
+      font-family: 'Poppins', sans-serif;
+    }
+
     .blog-container {
       max-width: 900px;
       margin: 130px auto 50px auto;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
+      background: #000; /* Black box */
       padding: 30px;
       border-radius: 15px;
-      color: #fff;
-      font-family: 'Poppins', sans-serif;
+      color: #fff; /* White text */
+      box-shadow: 0px 4px 15px rgba(0,0,0,0.6);
     }
 
     .blog-header {
@@ -60,15 +64,17 @@ if (!$post) {
 
     .blog-header div {
       line-height: 1.2;
+      color: #fff;
     }
 
     .blog-header strong {
       font-size: 18px;
+      color: #fff;
     }
 
     .blog-header span {
       font-size: 14px;
-      color: #ddd;
+      color: #ccc; /* slightly lighter */
     }
 
     .blog-title {
@@ -82,7 +88,7 @@ if (!$post) {
       white-space: pre-wrap;
       font-size: 16px;
       line-height: 1.6;
-      color: #f1f1f1;
+      color: #fff;
     }
   </style>
 </head>

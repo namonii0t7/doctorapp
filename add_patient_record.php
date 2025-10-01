@@ -93,32 +93,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <title>Update Patient Record</title>
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    /* Additional style for this form page */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #fff; /* white background */
+      color: #000;
+      padding-top: 80px;   /* space for fixed navbar */
+      padding-bottom: 70px; /* space for fixed footer */
+    }
+
     .wrapper {
       flex-direction: column;
-      padding-top: 140px;
-      background: rgba(39, 39, 39, 0.6);
-      max-width: 520px;
-      margin: 120px auto 50px auto;
+      background: #000; /* black container */
+      max-width: 650px;
+      margin: 0 auto;
       border-radius: 15px;
-      padding: 30px 30px 40px 30px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      padding: 40px 40px 50px 40px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.2);
     }
 
     h2 {
-      color: #fff;
+      color: #fff; /* white heading */
       font-weight: 600;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
       text-align: center;
+      font-size: 22px;
+      letter-spacing: 1px;
     }
 
     form label {
       display: block;
-      color: #fff;
+      color: #fff; /* labels white */
       font-weight: 500;
-      margin: 12px 0 5px;
+      margin: 15px 0 6px;
       font-size: 14px;
     }
 
@@ -126,63 +135,72 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     form input[type="date"],
     form textarea {
       width: 100%;
-      background: rgba(255, 255, 255, 0.2);
-      border: none;
-      border-radius: 30px;
-      padding: 12px 20px;
-      color: #fff;
-      font-size: 15px;
+      background: #fff; /* white inputs */
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: #000; /* black text */
+      font-size: 14px;
       outline: none;
       resize: vertical;
-      transition: background 0.3s ease;
-      font-family: 'Poppins', sans-serif;
+      transition: 0.3s;
     }
 
-    form input[type="text"]:hover,
-    form input[type="date"]:hover,
-    form textarea:hover,
     form input[type="text"]:focus,
     form input[type="date"]:focus,
     form textarea:focus {
-      background: rgba(255, 255, 255, 0.35);
+      border-color: #000; /* black border on focus */
     }
 
     textarea {
       min-height: 80px;
-      font-family: 'Poppins', sans-serif;
     }
 
     .btn {
-      margin-top: 25px;
+      margin-top: 30px;
       width: 100%;
-      height: 45px;
+      height: 48px;
       font-size: 15px;
       font-weight: 600;
-      color: black;
-      background: rgba(255, 255, 255, 0.7);
-      border-radius: 30px;
-      border: none;
+      color: #fff; /* white text */
+      background: #000; /* black button */
+      border-radius: 8px;
+      border: 2px solid #fff;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: 0.3s ease;
     }
 
     .btn:hover {
-      background: rgba(255, 255, 255, 0.5);
-      box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+      background: #222;
     }
 
     .success-message {
       text-align: center;
       font-weight: 600;
       margin-bottom: 15px;
-      color: #a8ffa8;
-      text-shadow: 0 0 5px #3b7b3b;
+      color: #4CAF50;
     }
   </style>
 </head>
 <body>
 
-
+<!-- Navbar (fixed-top Bootstrap) -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">MediConnect</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="doctor_homepage.php">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="blog.php">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
 <div class="wrapper">
   <h2>Update Patient Record for <?= htmlspecialchars($user['firstname'] . ' ' . $user['lastname']) ?></h2>
@@ -232,6 +250,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </form>
 </div>
 
+<!-- Footer (fixed-bottom Bootstrap) -->
+<footer class="bg-dark text-white text-center py-3 fixed-bottom">
+  <div class="container">
+    <p class="mb-1">&copy; 2025 MediConnect. All rights reserved.</p>
+    <p class="mb-0">
+      <a href="about.html" class="text-white text-decoration-underline">About</a> | 
+      <a href="blog.php" class="text-white text-decoration-underline">Blog</a> | 
+      <a href="#" class="text-white text-decoration-underline">Services</a>
+    </p>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
-

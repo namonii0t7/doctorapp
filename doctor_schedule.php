@@ -27,7 +27,81 @@ $schedules = $conn->query("SELECT * FROM schedules WHERE doctor_id = $doctor_id 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Optional: style your delete button */
+    body {
+      background-color: #fff;
+      color: #000;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .wrapper {
+      max-width: 1000px;
+      margin: 120px auto;
+      padding: 20px;
+    }
+
+    .schedule-box {
+      background: #000;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .schedule-box h2 {
+      color: #fff;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    form label {
+      color: #fff;
+      font-weight: bold;
+    }
+
+    form input[type="date"],
+    form input[type="time"],
+    form input[type="number"],
+    form input[type="submit"] {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    form input[type="submit"] {
+      background: #fff;
+      color: #000;
+      font-weight: bold;
+      border: 2px solid #000;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    form input[type="submit"]:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      background: #fff;
+      color: #000;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    table th, table td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    table th {
+      background: #f4f4f4;
+      font-weight: bold;
+    }
+
     .delete-btn {
       background-color: #e74c3c;
       border: none;
@@ -38,38 +112,31 @@ $schedules = $conn->query("SELECT * FROM schedules WHERE doctor_id = $doctor_id 
       font-weight: bold;
       transition: background-color 0.3s ease;
     }
+
     .delete-btn:hover {
       background-color: #c0392b;
     }
   </style>
 </head>
 <body>
-      <!-- Navbar -->
-   <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top mt-3">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">MediConnect .</a>
-
-    <!-- Burger Button -->
+  <!-- Navbar -->
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">MediConnect</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
-
-    <!-- Nav links -->
     <div class="collapse navbar-collapse" id="mainNavbar">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link active" href="doctor_homepage.php">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="blog.php">Blog</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
         <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
       </ul>
-      <div class="d-flex ms-3 gap-2">
-  <button class="btn custom-btn btn-signin" onclick="window.location.href='doctor_profile.php'">Profile</button>
-  <button class="btn custom-btn btn-signup" onclick="window.location.href='logout.php'">Log out</button>
-</div>
-
     </div>
   </div>
-</nav>>
+</nav>
+
 
   <div class="wrapper">
     <div class="schedule-box">
@@ -121,6 +188,18 @@ $schedules = $conn->query("SELECT * FROM schedules WHERE doctor_id = $doctor_id 
       </table>
     </div>
   </div>
+
+  <footer class="bg-dark text-white text-center py-3">
+  <div class="container">
+    <p class="mb-1">&copy; 2025 MediConnect. All rights reserved.</p>
+    <p class="mb-0">
+      <a href="about.html" class="text-white text-decoration-underline">About</a> | 
+      <a href="blog.php" class="text-white text-decoration-underline">Blog</a> | 
+      <a href="#" class="text-white text-decoration-underline">Services</a>
+    </p>
+  </div>
+</footer>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
