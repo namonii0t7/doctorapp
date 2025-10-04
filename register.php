@@ -47,8 +47,9 @@ if ($stmt->execute()) {
         $mail->SMTPAuth   = true;
         $mail->Username   = EMAIL_USERNAME;
         $mail->Password   = EMAIL_PASSWORD;
-        $mail->SMTPSecure = 'tls';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
+
 
         $mail->setFrom(EMAIL_USERNAME, 'Doctor App');
         $mail->addAddress($email, $firstname);

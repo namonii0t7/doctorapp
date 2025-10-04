@@ -35,98 +35,124 @@ $post_result = $post_stmt->get_result();
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Doctor Profile</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="profile.css" />
-
   <style>
+    html, body {
+      height: 100%;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      font-family: 'Poppins', sans-serif;
+      color: #000;
+      padding-top: 70px;
+    }
+
+    .profile-container {
+      max-width: 1100px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #000;
+      color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .left-section, .right-section {
+      flex: 1;
+      min-width: 300px;
+      margin: 10px;
+    }
+
     .profile-photo img {
       width: 150px;
       height: 150px;
-      object-fit: cover;
       border-radius: 50%;
-      border: 2px solid #333;
+      border: 3px solid #fff;
+      object-fit: cover;
     }
 
-    .profile-photo span {
-      font-size: 80px;
-      display: inline-block;
-      width: 150px;
-      height: 150px;
-      line-height: 150px;
-      text-align: center;
-      background: #ddd;
-      border-radius: 50%;
-      color: #555;
+    textarea {
+      width: 100%;
+      background: #fff;
+      color: #000;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      resize: none;
+    }
+
+    .buttons .btn {
+      margin: 5px;
+      border-radius: 8px;
+    }
+
+    .white-btn {
+      background: #fff;
+      color: #000;
+      border: 1px solid #000;
+    }
+    .white-btn:hover {
+      background: #ccc;
+      color: #000;
+    }
+
+    .btn.danger {
+      background: #dc3545;
+      color: #fff;
     }
 
     .blog-section {
-      width: 100%;
+      margin-top: 30px;
       padding: 20px;
-      margin-top: 40px;
-      background: rgba(255, 255, 255, 0.04);
-      
+      background: black;
       border-radius: 10px;
     }
 
-    .blog-section h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
+    /* Blog post style */
     .blog-post {
-      margin-bottom: 30px;
+      background: #fff;
+      color: #000;
       padding: 15px;
-      background: rgba(255,255,255,0.10);
-      border-left: 5px solid #0b7dda;
-      border-radius: 5px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
     }
 
     .blog-post h3 {
-      margin-bottom: 10px;
+      color: #000;
     }
-
-    .blog-post p {
-      white-space: pre-wrap;
+    .blog-post p, .blog-post small {
+      color: #000;
     }
-
-    .blog-post small {
-      color: #555;
-    }
-
-    .blog-post a.btn {
-      display: inline-block;
-      margin-top: 10px;
-      margin-right: 10px;
-      padding: 5px 10px;
-      background-color: #0b7dda;
+    .blog-post .btn {
+      background: #000;
       color: #fff;
-      border-radius: 5px;
-      text-decoration: none;
-      font-size: 14px;
+      border: none;
+    }
+    .blog-post .btn:hover {
+      background: #333;
+      color: #fff;
     }
 
-    .blog-post a.btn.danger {
-      background-color: #dc3545;
-    }
-
-    .blog-post a.btn.white-btn {
-      background-color: #6c757d;
+    footer {
+      background: #000;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      margin-top: auto; /* sticks footer to bottom */
     }
   </style>
 </head>
 <body>
 
-
-     <!-- Navbar -->
-   <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">MediConnect .</a>
-
-    <!-- Burger Button -->
+    <a class="navbar-brand" href="#">MediConnect.</a>
     <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
-
-    <!-- Nav links -->
     <div class="collapse navbar-collapse" id="mainNavbar">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item"><a class="nav-link active" href="doctor_homepage.php">Home</a></li>
@@ -135,27 +161,24 @@ $post_result = $post_stmt->get_result();
         <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
       </ul>
       <div class="d-flex ms-3 gap-2">
-  <button class="btn custom-btn btn-signin" onclick="window.location.href='doctor_profile.php?action=login'">Profile</button>
-  <button class="btn custom-btn btn-signup" onclick="window.location.href='logout.php?action=register'">Log out</button>
-</div>
-
+        <button class="btn white-btn" onclick="window.location.href='doctor_profile.php?action=login'">Profile</button>
+        <button class="btn btn-light" onclick="window.location.href='logout.php?action=register'">Log out</button>
+      </div>
     </div>
   </div>
 </nav>
 
-
-<div class="profile-container" style="flex-direction: column;">
-  <!-- Profile Box -->
+<div class="profile-container">
   <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
-    <div class="left-section">
-      <div class="profile-photo">
+    <div class="left-section text-center">
+      <div class="profile-photo mb-3">
         <?php if (!empty($doctor['image']) && file_exists('uploads/' . $doctor['image'])): ?>
           <img src="<?php echo 'uploads/' . htmlspecialchars($doctor['image']); ?>" alt="Doctor Profile Picture" />
         <?php else: ?>
-          <span>👤</span>
+          <span style="font-size: 80px;">👤</span>
         <?php endif; ?>
       </div>
-      <div class="bio">
+      <div class="bio text-start">
         <h3>Bio</h3>
         <p><?php echo htmlspecialchars($doctor['bio']); ?></p>
       </div>
@@ -164,8 +187,8 @@ $post_result = $post_stmt->get_result();
     <div class="right-section">
       <form action="edit_doctor.html" method="POST">
         <input type="hidden" name="id" value="<?php echo $doctor['id']; ?>" />
-        <label>Profile Info</label>
-        <textarea name="profile_info" rows="5" readonly><?php 
+        <label class="form-label">Profile Info</label>
+        <textarea name="profile_info" rows="6" readonly><?php 
           echo "Dr. " . htmlspecialchars($doctor['firstname'] . ' ' . $doctor['lastname']) . "\n" .
                htmlspecialchars($doctor['specialization']) . "\n" .
                htmlspecialchars($doctor['email']) . "\n" .
@@ -173,16 +196,15 @@ $post_result = $post_stmt->get_result();
                htmlspecialchars($doctor['chamber']);
         ?></textarea>
 
-        <div class="buttons">
+        <div class="buttons mt-3">
           <button type="button" class="btn white-btn" onclick="window.location.href='edit_doctorpre.php'">Edit Profile</button>
-          <a href="logout.php" class="btn">Logout</a>
+          <a href="logout.php" class="btn btn-light">Logout</a>
           <a href="delete_doctor.php" class="btn danger" onclick="return confirm('Are you sure you want to delete your account?');">Delete Account</a>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- Blog Section Right Below -->
   <div class="blog-section">
     <h2>📝 Your Blog Posts</h2>
     <?php if ($post_result->num_rows > 0): ?>
@@ -191,18 +213,22 @@ $post_result = $post_stmt->get_result();
           <h3><?php echo htmlspecialchars($post['title']); ?></h3>
           <p><?php echo nl2br(htmlspecialchars(substr($post['content'], 0, 300))); ?>...</p>
           <small>Posted on: <?php echo date("F j, Y, g:i a", strtotime($post['created_at'])); ?></small><br>
-          <a href="view_blog.php?id=<?= $post['id'] ?>" class="btn white-btn">Read More</a>
-          <a href="edit_blog.php?id=<?= $post['id'] ?>" class="btn">Edit</a>
-          <a href="delete_blog.php?id=<?= $post['id'] ?>" class="btn danger" onclick="return confirm('Are you sure you want to delete this post?')">Delete</a>
+          <a href="view_blog.php?id=<?= $post['id'] ?>" class="btn btn-sm">Read More</a>
+          <a href="edit_blog.php?id=<?= $post['id'] ?>" class="btn btn-sm">Edit</a>
+          <a href="delete_blog.php?id=<?= $post['id'] ?>" class="btn btn-sm danger" onclick="return confirm('Are you sure you want to delete this post?')">Delete</a>
         </div>
       <?php endwhile; ?>
     <?php else: ?>
-      <p style="text-align: center;">You haven't posted any blogs yet.</p>
+      <p style="text-align: center; color:#333;">You haven't posted any blogs yet.</p>
     <?php endif; ?>
   </div>
 </div>
 
-<script src="script.js"></script>
+<!-- Sticky Footer -->
+<footer>
+  <p>&copy; <?php echo date("Y"); ?> MediConnect. All Rights Reserved.</p>
+</footer>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

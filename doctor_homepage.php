@@ -51,14 +51,17 @@ $doctor = $result->fetch_assoc();
     }
 
     .btn-black {
-      background-color: #fff;
-      color: #000;
+      background-color: white;
+      color: black;
       border: 1px solid #000;
-      transition: 0.3s;
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-weight: 500;
     }
 
     .btn-black:hover {
-      background-color: #fff;
+      background-color: white;
+      color: black;
       border-color: #000;
     }
 
