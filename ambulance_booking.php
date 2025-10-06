@@ -63,14 +63,14 @@ $myBookings = $conn->query("
   <div class="container-fluid">
     <a class="navbar-brand fw-bold" href="#">MediConnect</a>
 
-    <!-- 🔍 Search Bar -->
+    <!-- Search Bar -->
     <form class="d-flex" method="GET" action="" style="width: 350px;">
         <input class="form-control me-2 navbar-search" type="search" name="search" placeholder="Search ambulance by name or location" value="<?= htmlspecialchars($search) ?>">
         <button class="btn btn-outline-light" type="submit">Search</button>
     </form>
 
     <div>
-      <a href="patient_logout.php" class="btn btn-outline-light btn-sm">Logout</a>
+      <a href="logout.php" class="btn btn-outline-light btn-sm">Logout</a>
     </div>
   </div>
 </nav>

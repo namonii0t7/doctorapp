@@ -29,15 +29,21 @@
     }
 
     .btn-black {
-      background-color: white;
-      color: black;
-      border: 1px solid #000;
-    }
+  background-color: white;
+  color: black !important;  /* make sure text stays black */
+  border: 1px solid #000;
+  border-radius: 30px;
+  font-weight: 500;
+  padding: 6px 18px;
+  transition: 0.3s;
+}
 
-    .btn-black:hover {
-      background-color: #fff;
-      border-color: #000;
-    }
+.btn-black:hover {
+  background-color: #000;   /* black background on hover */
+  color: #fff !important;   /* white text on hover */
+  border-color: #000;
+}
+
 
     .main-box {
       flex: 1;
@@ -119,7 +125,7 @@
     </button>
     <div class="collapse navbar-collapse" id="mainNavbar">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-3">
-        <li class="nav-item"><a class="nav-link active" href="user_homepage.php">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="user_homepage.html">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="blog.php">Blog</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
         <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>

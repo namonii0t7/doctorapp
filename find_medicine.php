@@ -70,7 +70,7 @@ $myOrders = $conn->query("
     </form>
 
     <div>
-      <a href="patient_logout.php" class="btn btn-outline-light btn-sm">Logout</a>
+      <a href="logout.php" class="btn btn-outline-light btn-sm">Logout</a>
     </div>
   </div>
 </nav>

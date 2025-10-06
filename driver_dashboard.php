@@ -106,7 +106,7 @@ button.complete { background: #f1c40f; color:#000; }
   <div class="container">
     <a class="navbar-brand fw-bold" href="#">MediConnect</a>
     <div class="ms-auto">
-      <a class="btn btn-light" href="driver_logout.php">Logout</a>
+      <a class="btn btn-light" href="logout.php">Logout</a>
     </div>
   </div>
 </nav>

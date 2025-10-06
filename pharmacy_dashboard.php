@@ -43,7 +43,7 @@ $orders = $conn->query("
     <a class="navbar-brand" href="#">MediConnect Pharmacy</a>
     <div>
       <span class="text-white me-3"><?= $_SESSION['pharmacy_name'] ?></span>
-      <a href="pharmacy_logout.php" class="btn btn-outline-light btn-sm">Logout</a>
+      <a href="logout.php" class="btn btn-outline-light btn-sm">Logout</a>
     </div>
   </div>
 </nav>

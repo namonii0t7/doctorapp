@@ -47,18 +47,21 @@ $schedules = $conn->query($sql);
 
     /* Buttons */
     .btn-black {
-      background-color: #fff;
-      color: #000;
-      border: 1px solid #000;
-      border-radius: 30px;
-      font-weight: 500;
-      padding: 6px 18px;
-      transition: 0.3s;
-    }
-    .btn-black:hover {
-      background-color: #fff;
-      border-color: #000;
-    }
+  background-color: #fff;
+  color: #000 !important;
+  border: 1px solid #000;
+  border-radius: 30px;
+  font-weight: 500;
+  padding: 6px 18px;
+  transition: 0.3s;
+}
+
+.btn-black:hover {
+  background-color: #000;
+  color: #fff !important;
+  border-color: #000;
+}
+
 
     /* Main Box */
     .main-box {
