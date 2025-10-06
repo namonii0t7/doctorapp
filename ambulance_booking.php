@@ -9,6 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 
 $patient_id = $_SESSION['user_id'];
 $success = $error = '';
+$search = "";
 
 // Handle booking submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['driver_id'])) {
@@ -27,8 +28,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['driver_id'])) {
     }
 }
 
-// Fetch all drivers
-$drivers = $conn->query("SELECT * FROM drivers");
+// Handle search query
+if (isset($_GET['search'])) {
+    $search = $conn->real_escape_string($_GET['search']);
+    $drivers = $conn->query("SELECT * FROM drivers WHERE name LIKE '%$search%' OR location LIKE '%$search%'");
+} else {
+    $drivers = $conn->query("SELECT * FROM drivers");
+}
 
 // Fetch current user's bookings with driver info
 $myBookings = $conn->query("
@@ -45,12 +51,24 @@ $myBookings = $conn->query("
 <meta charset="UTF-8">
 <title>Book Ambulance</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+.navbar-search {
+    width: 300px;
+}
+</style>
 </head>
 <body class="bg-light">
 
 <nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand fw-bold" href="#">MediConnect</a>
+
+    <!-- 🔍 Search Bar -->
+    <form class="d-flex" method="GET" action="" style="width: 350px;">
+        <input class="form-control me-2 navbar-search" type="search" name="search" placeholder="Search ambulance by name or location" value="<?= htmlspecialchars($search) ?>">
+        <button class="btn btn-outline-light" type="submit">Search</button>
+    </form>
+
     <div>
       <a href="patient_logout.php" class="btn btn-outline-light btn-sm">Logout</a>
     </div>
@@ -64,57 +82,65 @@ $myBookings = $conn->query("
     <?php if($success) echo "<div class='alert alert-success'>$success</div>"; ?>
     <?php if($error) echo "<div class='alert alert-danger'>$error</div>"; ?>
 
+    <?php if ($search): ?>
+        <h5 class="text-center mb-4">Showing results for "<span class="text-primary"><?= htmlspecialchars($search) ?></span>"</h5>
+    <?php endif; ?>
+
     <div class="row">
-    <?php while($row = $drivers->fetch_assoc()): ?>
-        <div class="col-md-6 mb-4">
-            <div class="card shadow">
-                <div class="card-body">
-                    <h5 class="card-title"><?= htmlspecialchars($row['name']) ?></h5>
-                    <p><b>Phone:</b> <?= htmlspecialchars($row['phone']) ?></p>
-                    <p><b>Location:</b> <?= htmlspecialchars($row['location']) ?></p>
-                    <p>Status: 
+    <?php if ($drivers->num_rows > 0): ?>
+        <?php while($row = $drivers->fetch_assoc()): ?>
+            <div class="col-md-6 mb-4">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= htmlspecialchars($row['name']) ?></h5>
+                        <p><b>Phone:</b> <?= htmlspecialchars($row['phone']) ?></p>
+                        <p><b>Location:</b> <?= htmlspecialchars($row['location']) ?></p>
+                        <p>Status: 
+                            <?php if($row['status']=='available'): ?>
+                                <span class="badge bg-success">Available</span>
+                            <?php else: ?>
+                                <span class="badge bg-danger">Busy</span>
+                            <?php endif; ?>
+                        </p>
+
                         <?php if($row['status']=='available'): ?>
-                            <span class="badge bg-success">Available</span>
-                        <?php else: ?>
-                            <span class="badge bg-danger">Busy</span>
+                        <form method="POST">
+                            <input type="hidden" name="driver_id" value="<?= $row['id'] ?>">
+
+                            <div class="mb-2">
+                                <label class="form-label">Pickup Location</label>
+                                <input type="text" name="pickup" class="form-control" required>
+                            </div>
+
+                            <div class="mb-2">
+                                <label class="form-label">Drop Location</label>
+                                <input type="text" name="drop" class="form-control" required>
+                            </div>
+
+                            <div class="mb-2">
+                                <label class="form-label">Emergency Type</label>
+                                <select name="emergency_type" class="form-select">
+                                    <option value="Normal">Normal</option>
+                                    <option value="Critical">Critical</option>
+                                    <option value="ICU">ICU</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-2">
+                                <label class="form-label">Booking Date & Time</label>
+                                <input type="datetime-local" name="booking_time" class="form-control" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100">Book Ambulance</button>
+                        </form>
                         <?php endif; ?>
-                    </p>
-
-                    <?php if($row['status']=='available'): ?>
-                    <form method="POST">
-                        <input type="hidden" name="driver_id" value="<?= $row['id'] ?>">
-
-                        <div class="mb-2">
-                            <label class="form-label">Pickup Location</label>
-                            <input type="text" name="pickup" class="form-control" required>
-                        </div>
-
-                        <div class="mb-2">
-                            <label class="form-label">Drop Location</label>
-                            <input type="text" name="drop" class="form-control" required>
-                        </div>
-
-                        <div class="mb-2">
-                            <label class="form-label">Emergency Type</label>
-                            <select name="emergency_type" class="form-select">
-                                <option value="Normal">Normal</option>
-                                <option value="Critical">Critical</option>
-                                <option value="ICU">ICU</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-2">
-                            <label class="form-label">Booking Date & Time</label>
-                            <input type="datetime-local" name="booking_time" class="form-control" required>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary w-100">Book Ambulance</button>
-                    </form>
-                    <?php endif; ?>
+                    </div>
                 </div>
             </div>
-        </div>
-    <?php endwhile; ?>
+        <?php endwhile; ?>
+    <?php else: ?>
+        <p class="text-center text-muted">No ambulances found matching your search.</p>
+    <?php endif; ?>
     </div>
 
     <h3 class="mt-5 mb-3 text-center">My Ambulance Bookings</h3>

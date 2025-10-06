@@ -51,24 +51,91 @@ if(isset($_POST['register'])){
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
-body { min-height:100vh; display:flex; flex-direction:column; background:#f8f9fa; font-family:'Poppins',sans-serif;}
-main { flex:1; display:flex; justify-content:center; align-items:center; padding-top:60px;}
-.navbar-custom { background:#000;}
-.navbar-custom .navbar-brand, .navbar-custom .nav-link, .navbar-custom .btn { color:#fff;}
-.navbar-custom .nav-link:hover { color:#ccc;}
-.btn-black { background:#fff;color:#000;border:1px solid #000; transition:0.3s;}
-.btn-black:hover { background:#fff; border-color:#000;}
-.form-card { background:#000;padding:40px;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,0.3);width:100%; max-width:600px;}
-.form-card input.form-control { background:#fff;color:#000;border-radius:5px;border:1px solid #ccc;}
-.form-card input.form-control:focus { border-color:#0d6efd;box-shadow:0 0 0 0.2rem rgba(13,110,253,.25);}
-.form-card input::placeholder { color:#666;}
-.form-card a { color:#fff; text-decoration:underline;}
-.form-card p { color:#fff;}
-footer { background:#000;color:#fff;text-align:center;padding:15px;}
-header { font-size:2rem;font-weight:bold;margin-bottom:20px;text-align:center;color:#fff;}
-.message { text-align:center; font-weight:600; margin-bottom:10px;}
-.success { color:#4CAF50;}
-.error { color:#f44336;}
+body { 
+  min-height:100vh; 
+  display:flex; 
+  flex-direction:column; 
+  background:#f8f9fa; 
+  font-family:'Poppins',sans-serif;
+}
+main { 
+  flex:1; 
+  display:flex; 
+  justify-content:center; 
+  align-items:center; 
+  padding-top:60px;
+}
+.navbar-custom {
+   background:#000;
+  }
+.navbar-custom .navbar-brand, .navbar-custom .nav-link, .navbar-custom .btn { 
+  color:#fff;
+}
+.navbar-custom .nav-link:hover {
+   color:#ccc;
+  }
+.btn-black { 
+  background:#fff;
+  color:#000;
+  border:1px solid #000;
+   transition:0.3s;
+  }
+.btn-black:hover {
+   background:#fff; 
+   border-color:#000;
+  }
+.form-card { 
+  background:#000;
+  padding:40px;
+  border-radius:10px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+  width:100%; 
+  max-width:600px;
+}
+.form-card input.form-control {
+   background:#fff;
+   color:#000;
+   border-radius:5px;
+   border:1px solid #ccc;
+  }
+.form-card input.form-control:focus {
+   border-color:#0d6efd;
+   box-shadow:0 0 0 0.2rem rgba(13,110,253,.25);
+  }
+.form-card input::placeholder {
+   color:#666;
+  }
+.form-card a { 
+  color:#fff; 
+  text-decoration:underline;
+}
+.form-card p { 
+  color:#fff;
+}
+footer { 
+  background:#000;
+  color:#fff;
+  text-align:center;
+  padding:15px;
+}
+header {
+   font-size:2rem;
+   font-weight:bold;
+   margin-bottom:20px;
+   text-align:center;
+   color:#fff;
+  }
+.message {
+   text-align:center; 
+   font-weight:600; 
+   margin-bottom:10px;
+  }
+.success { 
+  color:#4CAF50;
+}
+.error {
+   color:#f44336;
+   }
 </style>
 </head>
 <body>
