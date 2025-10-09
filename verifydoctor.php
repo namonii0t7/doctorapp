@@ -34,3 +34,4 @@ if (isset($_GET['token'])) {
 
 $conn->close();
 ?>
+''
