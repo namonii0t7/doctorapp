@@ -12,7 +12,8 @@ if ($conn->connect_error) {
 
 $doctor_id = $_SESSION['doctor_id'];
 
-$sql = "
+// Fetch latest appointment per patient
+$sql_latest = "
   SELECT 
     a.id AS appointment_id, 
     u.id AS user_id, 
@@ -30,7 +31,8 @@ $sql = "
     pr.previous_history, 
     pr.prescription, 
     pr.notes, 
-    pr.next_appointment
+    pr.next_appointment,
+    s.date AS appointment_date
   FROM appointments a
   JOIN (
       SELECT MAX(a2.id) AS latest_appointment_id
@@ -45,10 +47,10 @@ $sql = "
   ORDER BY s.date DESC
 ";
 
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("ii", $doctor_id, $doctor_id);
-$stmt->execute();
-$result = $stmt->get_result();
+$stmt_latest = $conn->prepare($sql_latest);
+$stmt_latest->bind_param("ii", $doctor_id, $doctor_id);
+$stmt_latest->execute();
+$result_latest = $stmt_latest->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -63,7 +65,7 @@ $result = $stmt->get_result();
       background: #fff;
       color: #000;
       font-family: 'Poppins', sans-serif;
-      padding-top: 80px; /* prevents content from being hidden behind fixed navbar */
+      padding-top: 80px;
     }
     .wrapper {
       max-width: 1200px;
@@ -120,6 +122,16 @@ $result = $stmt->get_result();
       background: #27ae60;
       color: #fff;
     }
+    .collapse-btn {
+      background: none;
+      border: none;
+      color: #27ae60;
+      text-align: left;
+      padding: 0;
+      margin-top: 8px;
+      font-size: 14px;
+      cursor: pointer;
+    }
     #searchInput {
       border-radius: 50px;
       width: 250px;
@@ -128,7 +140,7 @@ $result = $stmt->get_result();
 </head>
 <body>
 
-<!-- Navbar (fixed-top using Bootstrap class) -->
+<!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
     <a class="navbar-brand fw-bold" href="#">MediConnect</a>
@@ -156,33 +168,68 @@ $result = $stmt->get_result();
 <div class="wrapper">
   <h2 class="page-title">Patients Who Booked Appointments</h2>
 
-  <?php if ($result->num_rows > 0): ?>
+  <?php if ($result_latest->num_rows > 0): ?>
     <div class="patients-grid" id="patientsGrid">
-      <?php while ($row = $result->fetch_assoc()): ?>
+      <?php while ($row = $result_latest->fetch_assoc()): ?>
         <div class="patient-box">
           <h3 class="patient-name"><?= htmlspecialchars($row['firstname'] . ' ' . $row['lastname']) ?></h3>
           <p class="patient-email"><strong>Email:</strong> <?= htmlspecialchars($row['email']) ?></p>
+          <p><strong>Latest Appointment:</strong> <?= htmlspecialchars($row['appointment_date']) ?></p>
 
-          <?php if ($row['weight'] || $row['pulse'] || $row['blood_pressure'] || $row['temperature'] || $row['blood_group']): ?>
-            <div class="record-section">
-              <p><strong>Weight:</strong> <?= htmlspecialchars($row['weight']) ?></p>
-              <p><strong>Pulse:</strong> <?= htmlspecialchars($row['pulse']) ?></p>
-              <p><strong>Blood Pressure:</strong> <?= htmlspecialchars($row['blood_pressure']) ?></p>
-              <p><strong>Temperature:</strong> <?= htmlspecialchars($row['temperature']) ?></p>
-              <p><strong>Blood Group:</strong> <?= htmlspecialchars($row['blood_group']) ?></p>
-              <p><strong>Problems:</strong> <?= nl2br(htmlspecialchars($row['problems'])) ?></p>
-              <p><strong>Allergies:</strong> <?= nl2br(htmlspecialchars($row['allergies'])) ?></p>
-              <p><strong>Symptoms Duration:</strong> <?= nl2br(htmlspecialchars($row['symptoms_duration'])) ?></p>
-              <p><strong>Previous History:</strong> <?= nl2br(htmlspecialchars($row['previous_history'])) ?></p>
-              <p><strong>Prescription:</strong> <?= nl2br(htmlspecialchars($row['prescription'])) ?></p>
-              <p><strong>Notes:</strong> <?= nl2br(htmlspecialchars($row['notes'])) ?></p>
-              <p><strong>Next Appointment:</strong> <?= htmlspecialchars($row['next_appointment']) ?></p>
+          <div class="record-section">
+            <p><strong>Weight:</strong> <?= htmlspecialchars($row['weight']) ?></p>
+            <p><strong>Pulse:</strong> <?= htmlspecialchars($row['pulse']) ?></p>
+            <p><strong>Blood Pressure:</strong> <?= htmlspecialchars($row['blood_pressure']) ?></p>
+            <p><strong>Temperature:</strong> <?= htmlspecialchars($row['temperature']) ?></p>
+            <p><strong>Blood Group:</strong> <?= htmlspecialchars($row['blood_group']) ?></p>
+            <p><strong>Problems:</strong> <?= nl2br(htmlspecialchars($row['problems'])) ?></p>
+            <p><strong>Allergies:</strong> <?= nl2br(htmlspecialchars($row['allergies'])) ?></p>
+            <p><strong>Symptoms Duration:</strong> <?= nl2br(htmlspecialchars($row['symptoms_duration'])) ?></p>
+            <p><strong>Previous History:</strong> <?= nl2br(htmlspecialchars($row['previous_history'])) ?></p>
+            <p><strong>Prescription:</strong> <?= nl2br(htmlspecialchars($row['prescription'])) ?></p>
+            <p><strong>Notes:</strong> <?= nl2br(htmlspecialchars($row['notes'])) ?></p>
+            <p><strong>Next Appointment:</strong> <?= htmlspecialchars($row['next_appointment']) ?></p>
+          </div>
+
+          <a href="add_patient_record.php?appointment_id=<?= $row['appointment_id'] ?>&user_id=<?= $row['user_id'] ?>" class="btn">Update Current Record</a>
+
+          <!-- Previous Records Collapse -->
+          <?php
+            $user_id = $row['user_id'];
+            $sql_prev = "
+              SELECT pr.*, s.date AS appointment_date
+              FROM patient_records pr
+              JOIN appointments a ON pr.appointment_id = a.id
+              JOIN schedules s ON a.schedule_id = s.id
+              WHERE pr.doctor_id = ? AND a.user_id = ? AND a.id != ?
+              ORDER BY s.date DESC
+            ";
+            $stmt_prev = $conn->prepare($sql_prev);
+            $stmt_prev->bind_param("iii", $doctor_id, $user_id, $row['appointment_id']);
+            $stmt_prev->execute();
+            $res_prev = $stmt_prev->get_result();
+          ?>
+          <?php if ($res_prev->num_rows > 0): ?>
+            <button class="collapse-btn" data-bs-toggle="collapse" data-bs-target="#prev<?= $row['user_id'] ?>">Show Previous Records</button>
+            <div class="collapse mt-2" id="prev<?= $row['user_id'] ?>">
+              <?php while ($p = $res_prev->fetch_assoc()): ?>
+                <div style="border-top:1px solid #555; margin-top:8px; padding-top:8px;">
+                  <p><strong>Date:</strong> <?= htmlspecialchars($p['appointment_date']) ?></p>
+                  <p><strong>Weight:</strong> <?= htmlspecialchars($p['weight']) ?></p>
+                  <p><strong>Pulse:</strong> <?= htmlspecialchars($p['pulse']) ?></p>
+                  <p><strong>Blood Pressure:</strong> <?= htmlspecialchars($p['blood_pressure']) ?></p>
+                  <p><strong>Temperature:</strong> <?= htmlspecialchars($p['temperature']) ?></p>
+                  <p><strong>Problems:</strong> <?= nl2br(htmlspecialchars($p['problems'])) ?></p>
+                  <p><strong>Allergies:</strong> <?= nl2br(htmlspecialchars($p['allergies'])) ?></p>
+                  <p><strong>Symptoms Duration:</strong> <?= nl2br(htmlspecialchars($p['symptoms_duration'])) ?></p>
+                  <p><strong>Previous History:</strong> <?= nl2br(htmlspecialchars($p['previous_history'])) ?></p>
+                  <p><strong>Prescription:</strong> <?= nl2br(htmlspecialchars($p['prescription'])) ?></p>
+                  <p><strong>Notes:</strong> <?= nl2br(htmlspecialchars($p['notes'])) ?></p>
+                  <p><strong>Next Appointment:</strong> <?= htmlspecialchars($p['next_appointment']) ?></p>
+                </div>
+              <?php endwhile; ?>
             </div>
-          <?php else: ?>
-            <p style="margin-top:12px; font-style: italic; color:#aaa;">No patient record added yet.</p>
           <?php endif; ?>
-
-          <a href="add_patient_record.php?appointment_id=<?= $row['appointment_id'] ?>&user_id=<?= $row['user_id'] ?>" class="btn">Update Patient Record</a>
         </div>
       <?php endwhile; ?>
     </div>
@@ -202,6 +249,7 @@ $result = $stmt->get_result();
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
   document.getElementById('searchInput').addEventListener('input', function () {
     const keyword = this.value.toLowerCase().trim();
@@ -213,9 +261,8 @@ $result = $stmt->get_result();
     });
   });
 </script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 
 <?php $conn->close(); ?>
+
