@@ -1,4 +1,4 @@
-<?php
+<?php 
 session_start();
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
@@ -18,7 +18,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-//  Check if user already booked this schedule
+// Check if user already booked this schedule
 $check_appointment = $conn->prepare("SELECT id FROM appointments WHERE schedule_id = ? AND user_id = ?");
 $check_appointment->bind_param("ii", $schedule_id, $user_id);
 $check_appointment->execute();
@@ -30,7 +30,7 @@ if ($check_appointment->num_rows > 0) {
 }
 $check_appointment->close();
 
-//  Check if slots are full
+// Check if slots are full
 $slot_query = $conn->prepare("
     SELECT COUNT(a.id) AS booked, s.max_patients, s.appointment_fees, s.doctor_id
     FROM schedules s
@@ -69,48 +69,111 @@ $stmt2->close();
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Book Appointment with Payment</title>
+  <title>Book Appointment & Pay | MediConnect</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background-color: #fff;
+      color: #000;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .wrapper {
+      max-width: 600px;
+      margin: 130px auto;
+      background: #000;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .wrapper header {
+      color: #fff;
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    label {
+      color: #fff;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .submit {
+      width: 100%;
+      background: #fff;
+      color: #000;
+      border: 2px solid #000;
+      font-weight: bold;
+      padding: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .submit:hover {
+      background: #000;
+      color: #fff;
+      border-color: #fff;
+    }
+
+    p {
+      color: #fff;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    footer {
+      margin-top: 100px;
+    }
+  </style>
 </head>
 <body>
-   <!-- Navbar -->
-   <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top mt-3">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">MediConnect .</a>
 
-    <!-- Burger Button -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Nav links -->
-    <div class="collapse navbar-collapse" id="mainNavbar">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link active" href="user_homepage.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="blog.php">Blog</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
-        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-      </ul>
-      <div class="d-flex ms-3 gap-2">
-  <button class="btn custom-btn btn-signin" onclick="window.location.href='logout.php?action=login'">Log out</button>
-  <button class="btn custom-btn btn-signup" onclick="window.location.href='user_profile.php?action=register'">Profile</button>
-</div>
-
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">MediConnect</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="user_homepage.php">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.php">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        </ul>
+        <div class="d-flex ms-3 gap-2">
+          <button class="btn btn-light" onclick="window.location.href='logout.php'">Logout</button>
+          <button class="btn btn-outline-light" onclick="window.location.href='user_profile.php'">Profile</button>
+        </div>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-  <div class="form-box-doctor">
-    <form action="book_appointment.php" method="POST" class="doctor-register-container">
+  <div class="wrapper">
+    <form action="book_appointment.php" method="POST">
       <input type="hidden" name="user_id" value="<?= htmlspecialchars($user_id) ?>">
       <input type="hidden" name="schedule_id" value="<?= htmlspecialchars($schedule_id) ?>">
       <input type="hidden" name="amount" value="<?= htmlspecialchars($appointment_fees) ?>">
 
       <header>Confirm Appointment & Pay with bKash</header>
 
-      <p style="color:white;text-align:center;">
-        You're booking as 
+      <p>
+        You’re booking as 
         <strong>
           <?= isset($_SESSION['firstname']) && isset($_SESSION['lastname']) 
               ? htmlspecialchars($_SESSION['firstname'] . " " . $_SESSION['lastname']) 
@@ -118,22 +181,37 @@ $stmt2->close();
         </strong>
       </p>
 
-      <p style="color:white;text-align:center; font-weight:bold;">
-        Please pay <?= htmlspecialchars($appointment_fees) ?> tk to this number: <?= htmlspecialchars($doctor_phone) ?> and enter your payment details
+      <p>
+        Please pay <strong><?= htmlspecialchars($appointment_fees) ?> BDT</strong>  
+        to this number: <strong><?= htmlspecialchars($doctor_phone) ?></strong>  
+        and enter your payment details below.
       </p>
 
-      <label style="color:white;">bKash Number</label>
-      <input type="text" name="payer_number" placeholder="Bkash Number" class="input-field" required pattern="01[0-9]{9}">
+      <label>bKash Number</label>
+      <input type="text" name="payer_number" placeholder="01XXXXXXXXX" class="input-field" required pattern="01[0-9]{9}">
 
-      <label style="color:white;">Transaction ID (TrxID)</label>
+      <label>Transaction ID (TrxID)</label>
       <input type="text" name="trxid" placeholder="TrxID" class="input-field" required>
 
-      <label style="color:white;">Amount (BDT)</label>
+      <label>Amount (BDT)</label>
       <input type="number" value="<?= htmlspecialchars($appointment_fees) ?>" class="input-field" readonly>
-      <label style="color:white;">Confirm</label>
+
       <button type="submit" class="submit">Confirm & Pay</button>
     </form>
   </div>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-3">
+    <div class="container">
+      <p class="mb-1">&copy; 2025 MediConnect. All rights reserved.</p>
+      <p class="mb-0">
+        <a href="about.html" class="text-white text-decoration-underline">About</a> | 
+        <a href="blog.php" class="text-white text-decoration-underline">Blog</a> | 
+        <a href="#" class="text-white text-decoration-underline">Services</a>
+      </p>
+    </div>
+  </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

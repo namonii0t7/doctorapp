@@ -4,6 +4,7 @@ if (!isset($_SESSION['doctor_id'])) {
     header("Location: doclog.html");
     exit();
 }
+
 $conn = new mysqli("localhost", "root", "", "docappp");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -137,13 +138,13 @@ $schedules = $conn->query("SELECT * FROM schedules WHERE doctor_id = $doctor_id 
   </div>
 </nav>
 
-
   <div class="wrapper">
     <div class="schedule-box">
       <h2>Set Your Schedule</h2>
       <form action="save_schedule.php" method="POST">
         <label for="date">Date:</label>
-        <input type="date" name="date" required>
+        <!-- Restrict past date selection -->
+        <input type="date" name="date" required min="<?= date('Y-m-d'); ?>">
 
         <label for="start_time">Start Time:</label>
         <input type="time" name="start_time" required>
@@ -155,7 +156,7 @@ $schedules = $conn->query("SELECT * FROM schedules WHERE doctor_id = $doctor_id 
         <input type="number" name="max_patients" min="1" required>
 
         <label for="appointment_fees">Appointment Fees:</label>
-        <input type="number" name="appointment_fees" required>
+        <input type="number" name="appointment_fees" min="0" required>
 
         <input type="submit" value="Save Schedule">
       </form>
