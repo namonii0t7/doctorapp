@@ -151,7 +151,7 @@ $stmt2->close();
       </button>
       <div class="collapse navbar-collapse" id="mainNavbar">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link active" href="user_homepage.php">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="user_homepage.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="blog.php">Blog</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>

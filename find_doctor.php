@@ -81,41 +81,52 @@ $schedules = $conn->query($sql);
       font-weight: 600;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      color: #fff;
-    }
+    /* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff; /* White table */
+  color: #000; /* Black text */
+  border-radius: 12px;
+  overflow: hidden;
+}
 
-    th, td {
-      padding: 12px 15px;
-      text-align: center;
-      font-size: 15px;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-    }
+th, td {
+  padding: 12px 15px;
+  text-align: center;
+  font-size: 15px;
+  border-bottom: 1px solid #ddd;
+}
 
-    th {
-      background-color: rgba(255,255,255,0.1);
-    }
+th {
+  background-color: #f2f2f2; /* Light gray for header */
+  font-weight: 600;
+}
 
-    tr:nth-child(even) {
-      background-color: rgba(255,255,255,0.05);
-    }
+tr:nth-child(even) {
+  background-color: #f9f9f9; /* Slightly different shade for rows */
+}
 
-    .submit {
-      background-color: #fff;
-      color: #000;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+tr:hover {
+  background-color: #f1f1f1; /* Row hover effect */
+}
 
-    .submit:hover {
-      background-color: #ccc;
-    }
+/* Update submit buttons to match white table */
+.submit {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.submit:hover {
+  background-color: #333;
+}
+
 
     /* Search input */
     .form-control {

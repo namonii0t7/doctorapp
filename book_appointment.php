@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if ($booked >= $max_patients) {
         echo "<h2 style='color:red; text-align:center;'>Sorry, appointment slots are full. Try again tomorrow.</h2>";
-        echo "<p style='text-align:center;'><a href='user_homepage.php'>Return to Home</a></p>";
+        echo "<p style='text-align:center;'><a href='user_homepage.html'>Return to Home</a></p>";
         $conn->close();
         exit();
     }
@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $check->store_result();
     if ($check->num_rows > 0) {
         echo "<h2 style='color:red; text-align:center;'>This Transaction ID has already been used!</h2>";
-        echo "<p style='text-align:center;'><a href='user_homepage.php'>Return to Home</a></p>";
+        echo "<p style='text-align:center;'><a href='user_homepage.html'>Return to Home</a></p>";
         $check->close();
         $conn->close();
         exit();
