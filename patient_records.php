@@ -266,3 +266,7 @@ $result_latest = $stmt_latest->get_result();
 
 <?php $conn->close(); ?>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1767b94b781c96e84540c0e3c6928f7c044e6e5e
