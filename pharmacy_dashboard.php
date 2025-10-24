@@ -40,6 +40,7 @@ $orders = $conn->query("
 
 <nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
+     <button class="btn btn-outline-light me-3" onclick="history.back()">← Back</button>
     <a class="navbar-brand" href="#">MediConnect Pharmacy</a>
     <div>
       <span class="text-white me-3"><?= $_SESSION['pharmacy_name'] ?></span>

@@ -27,6 +27,7 @@ $user = $result->fetch_assoc();
 
       <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top mt-3">
   <div class="container-fluid">
+     <button class="btn btn-outline-light me-3" onclick="history.back()">← Back</button>
     <a class="navbar-brand" href="#">MediConnect .</a>
 
     <!-- Burger Button -->

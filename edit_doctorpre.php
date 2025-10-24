@@ -98,6 +98,7 @@ $doctor = $result->fetch_assoc();
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg fixed-top">
   <div class="container-fluid">
+     <button class="btn btn-outline-light me-3" onclick="history.back()">← Back</button>
     <a class="navbar-brand" href="#">MediConnect .</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
       <span class="navbar-toggler-icon"></span>

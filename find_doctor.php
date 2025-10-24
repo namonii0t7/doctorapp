@@ -70,7 +70,7 @@ $schedules = $conn->query($sql);
       background-color: #000;
       color: #fff;
       padding: 30px;
-      border-radius: 20px;
+      border-radius: 10px;
       box-shadow: 0 8px 30px rgba(0,0,0,0.3);
       overflow-x: auto;
     }
@@ -87,7 +87,7 @@ table {
   border-collapse: collapse;
   background-color: #fff; /* White table */
   color: #000; /* Black text */
-  border-radius: 12px;
+  border-radius: 6px;
   overflow: hidden;
 }
 
@@ -140,6 +140,7 @@ tr:hover {
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
   <div class="container-fluid">
+     <button class="btn btn-outline-light me-3" onclick="history.back()">← Back</button>
     <a class="navbar-brand fw-bold" href="#">MediConnect</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
       <span class="navbar-toggler-icon"></span>
@@ -205,7 +206,7 @@ tr:hover {
   </table>
 </div>
 
-<footer class="bg-dark text-white text-center py-3">
+<footer class="bg-dark text-white text-center py-1 fixed-bottom">
   <div class="container">
     <p class="mb-1">&copy; 2025 MediConnect. All rights reserved.</p>
     <p class="mb-0">

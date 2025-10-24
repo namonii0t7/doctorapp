@@ -61,6 +61,7 @@ $myOrders = $conn->query("
 
 <nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
+     <button class="btn btn-outline-light me-3" onclick="history.back()">← Back</button>
     <a class="navbar-brand fw-bold" href="#">MediConnect</a>
 
     <!-- Search Form -->

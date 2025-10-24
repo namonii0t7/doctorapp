@@ -150,6 +150,7 @@ footer { background:#000; color:#fff; text-align:center; padding:15px; }
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
   <div class="container">
+     <button class="btn btn-outline-light me-3" onclick="history.back()">← Back</button>
     <a class="navbar-brand fw-bold" href="#">MediConnect</a>
   </div>
 </nav>

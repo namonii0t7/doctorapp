@@ -25,7 +25,7 @@ $check_appointment->execute();
 $check_appointment->store_result();
 if ($check_appointment->num_rows > 0) {
     echo "<h2 style='color:red; text-align:center;'>You have already booked your appointment.</h2>";
-    echo "<p style='text-align:center;'><a href='user_homepage.php'>Return to Home</a></p>";
+    echo "<p style='text-align:center;'><a href='user_homepage.html'>Return to Home</a></p>";
     exit();
 }
 $check_appointment->close();
@@ -49,7 +49,7 @@ $slot_query->close();
 
 if ($booked >= $max_patients) {
     echo "<h2 style='color:red; text-align:center;'>Sorry, appointment slots are full. Try again tomorrow.</h2>";
-    echo "<p style='text-align:center;'><a href='user_homepage.php'>Return to Home</a></p>";
+    echo "<p style='text-align:center;'><a href='user_homepage.html'>Return to Home</a></p>";
     exit();
 }
 

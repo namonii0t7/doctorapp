@@ -86,24 +86,68 @@ $myBookings = $conn->query("
 <title>Driver Dashboard</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
-body { font-family:'Poppins',sans-serif; background:#f8f9fa; color:#000; }
-.wrapper { max-width: 1000px; margin: 100px auto; padding: 20px; }
-.dashboard-box { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); margin-bottom: 30px; }
-.dashboard-box h2 { text-align:center; margin-bottom:20px; }
-table { width: 100%; border-collapse: collapse; }
-table th, table td { padding: 12px; border: 1px solid #dee2e6; text-align: center; }
-table th { background: #343a40; color: #fff; }
-button { padding: 6px 12px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; }
-button.accept { background: #2ecc71; color:#fff; }
-button.reject { background: #e74c3c; color:#fff; }
-button.ontheway { background: #3498db; color:#fff; }
-button.complete { background: #f1c40f; color:#000; }
+body { 
+    font-family:'Poppins',sans-serif;
+     background:#f8f9fa; 
+     color:#000; 
+    }
+.wrapper { 
+    max-width: 1000px;
+     margin: 100px auto;
+      padding: 20px; 
+    }
+.dashboard-box { 
+    background: #fff; 
+    padding: 20px;
+     border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+      margin-bottom: 30px; 
+    }
+.dashboard-box h2 { 
+    text-align:center;
+     margin-bottom:20px; 
+    }
+table {
+     width: 100%; 
+     border-collapse: collapse; }
+table th, table td { 
+    padding: 12px;
+     border: 1px solid #dee2e6; 
+     text-align: center; 
+    }
+table th { 
+    background: #343a40; 
+    color: #fff; 
+}
+button {
+     padding: 6px 12px;
+      border: none; 
+      border-radius: 5px;
+       font-weight: bold; 
+       cursor: pointer; 
+    }
+button.accept { 
+    background: #2ecc71; 
+    color:#fff; 
+}
+button.reject { 
+    background: #e74c3c; 
+    color:#fff; 
+}
+button.ontheway { 
+    background: #3498db; 
+    color:#fff; 
+}
+button.complete { 
+    background: #f1c40f; 
+    color:#000; }
 </style>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
+     <button class="btn btn-outline-light me-3" onclick="history.back()">← Back</button>
     <a class="navbar-brand fw-bold" href="#">MediConnect</a>
     <div class="ms-auto">
       <a class="btn btn-light" href="logout.php">Logout</a>

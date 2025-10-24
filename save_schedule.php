@@ -17,20 +17,20 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// ✅ Validation 1: Prevent selecting past dates
+// Validation 1: Prevent selecting past dates
 $today = date('Y-m-d');
 if ($date < $today) {
     echo "<script>alert('You cannot select a past date!'); window.history.back();</script>";
     exit();
 }
 
-// ✅ Validation 2: Ensure end time is after start time
+// Validation 2: Ensure end time is after start time
 if (strtotime($end_time) <= strtotime($start_time)) {
     echo "<script>alert('End time must be after start time!'); window.history.back();</script>";
     exit();
 }
 
-// ✅ Save valid schedule
+//  Save valid schedule
 $sql = "INSERT INTO schedules (doctor_id, date, start_time, end_time, max_patients, appointment_fees)
         VALUES (?, ?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);

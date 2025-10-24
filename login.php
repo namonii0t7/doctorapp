@@ -30,9 +30,9 @@ if ($result->num_rows > 0) {
         echo "<script>alert('Please verify your email before logging in.'); window.history.back();</script>";
     } elseif (password_verify($pass, $row['password'])) {
        $_SESSION['user_id'] = $row['id'];
-$_SESSION['firstname'] = $row['firstname'];
-$_SESSION['lastname'] = $row['lastname'];
-$_SESSION['email'] = $row['email'];
+       $_SESSION['firstname'] = $row['firstname'];
+       $_SESSION['lastname'] = $row['lastname'];
+       $_SESSION['email'] = $row['email'];
 
 
         echo "<script>alert('Login successful! Redirecting to homepage.'); window.location.href = 'user_homepage.html';</script>";
