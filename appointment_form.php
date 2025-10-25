@@ -153,7 +153,7 @@ $stmt2->close();
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item"><a class="nav-link active" href="user_homepage.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="blog.php">Blog</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
         </ul>
         <div class="d-flex ms-3 gap-2">

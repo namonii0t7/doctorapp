@@ -42,7 +42,7 @@ $doctor = $result->fetch_assoc();
 
     .navbar-custom .navbar-brand,
     .navbar-custom .nav-link,
-    .navbar-custom .btn {
+    .navbar-custom  {
       color: #fff;
     }
 
@@ -148,7 +148,7 @@ $doctor = $result->fetch_assoc();
       <ul class="navbar-nav d-flex align-items-center gap-3 me-3">
         <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="blog.php">Blog</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
         <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
       </ul>
       <div class="d-flex align-items-center gap-2">

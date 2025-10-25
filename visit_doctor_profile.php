@@ -174,7 +174,7 @@ if (!$doctor) {
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link active" href="user_homepage.php">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="blog.php">Blog</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
         <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
       </ul>
     </div>

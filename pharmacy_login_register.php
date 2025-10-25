@@ -130,9 +130,17 @@ main {
   align-items:center; 
   padding-top:60px;
 }
-.navbar-custom { background:#000; }
-.navbar-custom .navbar-brand, .navbar-custom .nav-link { color:#fff; }
-.form-card { background:#000; padding:40px; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.3); width:100%; max-width:600px; }
+.navbar-custom { 
+  background:#000; 
+}
+.navbar-custom .navbar-brand, .navbar-custom .nav-link { 
+  color:#fff; 
+}
+.form-card { 
+  background:#000; 
+  padding:40px; 
+  border-radius:10px; 
+  box-shadow:0 5px 15px rgba(0,0,0,0.3); width:100%; max-width:600px; }
 .form-card input.form-control { background:#fff; color:#000; border-radius:5px; border:1px solid #ccc; }
 .form-card a { color:#fff; text-decoration:underline; }
 .form-card p { color:#fff; }

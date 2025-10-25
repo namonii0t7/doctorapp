@@ -150,7 +150,7 @@ $user = $result->fetch_assoc();
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-3">
         <li class="nav-item"><a class="nav-link active" href="user_homepage.html">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="blog.php">Blog</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
         <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
       </ul>
       <div class="d-flex gap-2">
