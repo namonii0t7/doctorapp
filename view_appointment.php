@@ -51,7 +51,9 @@ if (
 
         if ($status === 'approved') {
             $mail->Subject = 'Appointment Confirmed';
-            $mail->Body = "Dear $user_name,<br><br>Your appointment has been <strong>approved</strong>.<br>Your schedule is on <strong>$schedule_date</strong> from <strong>$patient_start to $patient_end</strong>.<br><br>Thank you.";
+            $mail->Body = "Dear $user_name,<br><br>Your appointment has been <strong>approved</strong>.
+            <br>Your schedule is on <strong>$schedule_date</strong> from 
+            <strong>$patient_start to $patient_end</strong>.<br><br>Thank you.";
             $alertMessage = "Appointment approved and confirmation email sent.";
         } else {
             $mail->Subject = 'Appointment Rejected';

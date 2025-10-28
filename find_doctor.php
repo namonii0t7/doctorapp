@@ -85,33 +85,32 @@ $schedules = $conn->query($sql);
 table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #fff; /* White table */
-  color: #000; /* Black text */
+  background-color: #fff; 
+  color: #000; 
   border-radius: 6px;
   overflow: hidden;
 }
 
 th, td {
-  padding: 12px 15px;
+  padding: 15px 5px;
   text-align: center;
   font-size: 15px;
   border-bottom: 1px solid #ddd;
 }
 
 th {
-  background-color: #f2f2f2; /* Light gray for header */
-  font-weight: 600;
+  background-color: #d2cacaff; 
+  font-weight: 300;
 }
 
 tr:nth-child(even) {
-  background-color: #f9f9f9; /* Slightly different shade for rows */
+  background-color: #f9f9f9; 
 }
 
 tr:hover {
-  background-color: #f1f1f1; /* Row hover effect */
+  background-color: #f1f1f1; 
 }
 
-/* Update submit buttons to match white table */
 .submit {
   background-color: #000;
   color: #fff;

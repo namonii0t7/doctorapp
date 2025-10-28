@@ -1,5 +1,15 @@
 <?php
-session_start(); // 🔐 Start the session
+session_start(); 
+
+if (isset($_SESSION['user_id'])) {
+    header("Location: user_homepage.html"); // redirect to homepage
+    exit();
+}
+
+// Prevent browser caching of this page
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Pragma: no-cache");
+header("Expires: 0");
 
 $servername = "localhost";
 $username = "root";

@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['pharmacy_id'])) {
         $stmt = $conn->prepare("INSERT INTO medicine_orders (user_id, pharmacy_id, prescription) VALUES (?, ?, ?)");
         $stmt->bind_param("iis", $user_id, $pharmacy_id, $filename);
 
-        if ($stmt->execute()) $success = "Prescription uploaded successfully!";
+        if ($stmt->execute()) $success = "Prescription uploaded successfully! Pharmacist will approve your prescription if they have medicine available";
         else $error = "Something went wrong.";
     } else $error = "File upload failed!";
 }
@@ -168,7 +168,7 @@ $myOrders = $conn->query("
 
 </div>
 
-<footer class="bg-dark text-white text-center py-3 mt-5">
+<footer class="bg-dark text-white text-center py-3 mt-5 fixed-bottom">
     &copy; <?=date('Y')?> MediConnect. All rights reserved.
 </footer>
 

@@ -156,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       min-height: 80px;
     }
 
-    .btn {
+    .btnn {
       margin-top: 30px;
       width: 100%;
       height: 48px;
@@ -170,7 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       transition: 0.3s ease;
     }
 
-    .btn:hover {
+    .btnn:hover {
       background: #222;
     }
 
@@ -187,7 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!-- Navbar (fixed-top Bootstrap) -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
-     <button class="btn btn-outline-light me-3" onclick="history.back()">← Back</button>
+     <button class="btn btn-outline btn-dark me-3" onclick="history.back()">← Back</button>
     <a class="navbar-brand fw-bold" href="#">MediConnect</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
       <span class="navbar-toggler-icon"></span>
@@ -247,7 +247,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <label for="next_appointment">Next Appointment Date:</label>
     <input type="date" id="next_appointment" name="next_appointment" value="<?= htmlspecialchars($record['next_appointment'] ?? '') ?>" />
 
-    <button type="submit" class="btn">Save Record</button>
+    <button type="submit" class="btnn">Save Record</button>
   </form>
 </div>
 

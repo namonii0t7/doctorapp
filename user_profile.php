@@ -39,7 +39,7 @@ $user = $result->fetch_assoc();
     }
     .navbar-custom .navbar-brand,
     .navbar-custom .nav-link,
-    .navbar-custom .btn {
+    .navbar-custom  {
       color: #fff;
     }
     .navbar-custom .nav-link:hover {

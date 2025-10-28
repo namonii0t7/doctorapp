@@ -66,6 +66,7 @@ $result_latest = $stmt_latest->get_result();
       color: #000;
       font-family: 'Poppins', sans-serif;
       padding-top: 80px;
+      
     }
     .wrapper {
       max-width: 1200px;
@@ -90,7 +91,7 @@ $result_latest = $stmt_latest->get_result();
       color: #fff;
       padding: 20px;
       border-radius: 12px;
-      width: 320px;
+      width: 820px;
       display: flex;
       flex-direction: column;
       gap: 10px;

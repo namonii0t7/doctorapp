@@ -40,10 +40,10 @@ if (!$post) {
     .blog-container {
       max-width: 900px;
       margin: 130px auto 50px auto;
-      background: #000; /* Black box */
+      background: #000; 
       padding: 30px;
       border-radius: 15px;
-      color: #fff; /* White text */
+      color: #fff; 
       box-shadow: 0px 4px 15px rgba(0,0,0,0.6);
     }
 
@@ -74,7 +74,7 @@ if (!$post) {
 
     .blog-header span {
       font-size: 14px;
-      color: #ccc; /* slightly lighter */
+      color: #ccc; 
     }
 
     .blog-title {

@@ -27,7 +27,7 @@ if(isset($_GET['token'])){
         $update = $conn->prepare("UPDATE drivers SET email_verified='1', verification_token=NULL WHERE verification_token=?");
         $update->bind_param("s",$token);
         $update->execute();
-        echo "<script>alert('Email verified! You can now login.'); window.location.href='driver_login_register.php';</script>";
+        echo "<script>alert('Email verified! You can now login.'); window.location.href='driver_register.php';</script>";
         exit;
     } else {
         echo "<script>alert('Invalid or already verified token.'); window.location.href='driver_login_register.php';</script>";
